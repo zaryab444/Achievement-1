@@ -44,40 +44,40 @@ router.get(`/`, async(req,res)=>{
        res.send(product);
   })
 
+  router.put('/:id',async (req, res)=> {
+    if(!mongoose.isValidObjectId(req.params.id)) {
+       return res.status(400).send('Invalid Product Id')
+    }
+    const category = await Category.findById(req.body.category);
+    if(!category) return res.status(400).send('Invalid Category')
 
-
-router.put(`/:id`, async(req, res)=>{
-  //check if id is valid or not
-  if(!mongoose.isValidObjectId(req.params.id)){
-    res.status(400).send('Invalid product id')
-  }
-
-  const category = await Category.findById(req.body.category);
-
-  if(!category) 
-  return res.status(400).send('Invalid Category')
-
-  const product = await Product.findById(
-    req.params.id,
-    { name: req.body.name,
-      description: req.body.description,
-      richDescription:req.body.richDescription,
-      image: req.body.image,
-      brand: req.body.brand,
-      price: req.body.price,
-      category:req.body.category,
-      countInStock: req.body.countInStock,
-      rating: req.body.rating,
-      numReviews: req.body.numReviews,
-      isFeatured: req.body.isFeatured
-
-    },
-    {new: true}
+    const product = await Product.findByIdAndUpdate(
+        req.params.id,
+        {
+            name: req.body.name,
+            description: req.body.description,
+            richDescription: req.body.richDescription,
+            image: req.body.image,
+            brand: req.body.brand,
+            price: req.body.price,
+            category: req.body.category,
+            countInStock: req.body.countInStock,
+            rating: req.body.rating,
+            numReviews: req.body.numReviews,
+            isFeatured: req.body.isFeatured,
+        },
+        { new: true}
     )
+
     if(!product)
-    return res.status(500).send('the product cannot be update')
+    return res.status(500).send('the product cannot be updated!')
+
     res.send(product);
 })
+
+
+
+
 
 
 
