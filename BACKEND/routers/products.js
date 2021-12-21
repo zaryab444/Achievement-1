@@ -20,7 +20,7 @@ router.get(`/`, async(req,res)=>{
   })
 
   //http://localhost:3000/api/v1/products/id
-  router.get('/:id', async(req,res)=>{
+  router.get(`/:id`, async(req,res)=>{
 
     ///this line tell if you add feild of another table with current table we use populate method
 
@@ -36,7 +36,7 @@ router.get(`/`, async(req,res)=>{
 
 
 
-router.put('/:id', async(req, res)=>{
+router.put(`/:id`, async(req, res)=>{
   //check if id is valid or not
   if(!mongoose.isValidObjectId(req.params.id)){
     res.status(400).send('Invalid product id')
@@ -105,7 +105,7 @@ router.put('/:id', async(req, res)=>{
      
   })
 
-  router.delete('/:id', (req,res) =>{
+  router.delete(`/:id`, (req,res) =>{
 
     //this is the promise way logic part2 using then
     Product.findByIdAndRemove(req.params.id).then(product =>{
@@ -118,6 +118,33 @@ router.put('/:id', async(req, res)=>{
     }).catch(err=>{
         return res.status(400).json({success: false, error: err})
     })
+})
+
+// get total product count
+//http://localhost:3000/api/v1/products/get/count
+router.get(`/get/count`, (req, res) => {
+  Product.countDocuments().then(count => {
+      if (count) {
+          return res.status(200).json({ productCount: count });
+      } else {
+          return res.status(500).json({ success: false });
+      }
+  }).catch(err => {
+      return res.status(400).json({
+          success: false,
+          error: err
+      })
+  });
+})
+
+router.get(`/get/featured/:count`, async (req,res) =>{
+  const count = req.params.count ? req.params.count :0
+  const products = await Product.find({isFeatured: true}).limit(+count);
+
+  if(!products){
+    res.status(500).json({success: false})
+  }
+  res.send(products)
 })
 
 
