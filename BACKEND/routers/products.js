@@ -5,14 +5,24 @@ const router  = express.Router();
 const mongoose = require('mongoose');
 
   //http://localhost:3000/api/v1/products
+//or
+//filter and getting  products by category id 
+//http://localhost:3000/api/v1/products?categories=61c1c39d1fc78b020d8ea674 this is category id
 router.get(`/`, async(req,res)=>{
 
 
    ///this line tell if you want to show specific key and remove key we use minus
 
  // const productList = await Product.find().select('name image -_id');
+    let filter = {};
+   if(req.query.categories)
+   {
+      filter = {category: req.query.categories.split(',')}
+   }
 
-    const productList = await Product.find();
+    const productList = await Product.find(filter).populate('category');
+
+
     if(!productList){
       res.status(500).json({success:false})
     }
