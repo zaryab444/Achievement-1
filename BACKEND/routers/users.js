@@ -12,6 +12,7 @@ router.get(`/`,async(req,res) =>{
     res.send(userList);
 })
 
+//http://localhost:3000/api/v1/users/:id
 router.get('/:id', async(req,res)=>{
     const user = await User.findById(req.params.id).select('-passwordHash');
 
@@ -44,5 +45,42 @@ router.post('/', async (req,res)=>{
     return res.status(400).send('The user cannot be created');
     res.send(user);
 })
+
+router.put('/:id', async (req,res)=>{
+
+    const userExist = await User.findById(req.params.id);
+    let newPassword;
+    //this condition implies user not send password in put request
+    if(req.body.password){
+            newPassword = bcrypt.hashSync(req.body.password, 10)
+    }
+    else{
+        newPassword = userExist.passwordHash;
+    }
+    const user = await User.findByIdAndUpdate(
+        req.params.id,
+        {
+            name : req.body.name,
+            email : req.body.email,
+            passwordHash: newPassword,
+            phone: req.body.phone,
+            isAdmin: req.body.isAdmin,
+            street:req.body.street,
+            appartment: req.body.appartment,
+            zip:req.body.zip,
+            city:req.body.city,
+            country:req.body.country
+        },
+        {
+            new: true
+        }
+    )
+    if(!user)
+    return res.status(404).send('the user cannot be updated')
+  
+  res.send(user);
+})
+
+
 
 module.exports = router
