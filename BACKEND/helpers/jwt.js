@@ -5,7 +5,8 @@ function authJwt(){
     const api = process.env.API_URL
     return expressjwt({
      secret,
-     algorithms:['HS256']
+     algorithms:['HS256'],
+     isRevoked: isRevoked
     }).unless({
         path :[
             //this is except api using without token
@@ -17,6 +18,16 @@ function authJwt(){
             `${api}/users/login`
         ]
     })
+}
+
+async function isRevoked(req, payload, done){
+    //if user is not admin then it will rejected
+    if(!payload.isAdmin){
+        done(null,true)
+    }
+    //you can also more role classifies here like admin
+
+    done();
 }
 
 module.exports = authJwt;

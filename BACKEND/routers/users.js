@@ -87,6 +87,7 @@ router.post('/login', async (req,res) => {
         const token = jwt.sign(
             {
                 userId: user.id,
+                //admin user can only use the token to process operation not user
                 isAdmin: user.isAdmin
             },
             secret,
