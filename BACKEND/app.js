@@ -6,6 +6,8 @@ const cors  = require ('cors');
 
 require('dotenv/config');
 
+const authJwts = require('./helpers/jwt');
+
 app.use(cors());
 app.options('*', cors())
 
@@ -14,6 +16,8 @@ app.options('*', cors())
 app.use(express.json());
 app.use(morgan('tiny'));
 
+ app.use(authJwts())
+
 const api = process.env.API_URL;
 
 //Routes
@@ -21,6 +25,7 @@ const categoriesRoutes = require('./routers/categories');
 const productRoutes = require('./routers/products');
 const usersRoutes = require('./routers/users');
 const ordersRoutes = require('./routers/orders');
+const authJwt = require('./helpers/jwt');
 
 
 

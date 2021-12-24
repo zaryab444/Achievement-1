@@ -77,13 +77,14 @@ router.put('/:id',async (req, res)=> {
     res.send(user);
 })
 
+//http://localhost:3000/api/v1/users/login
 router.post('/login', async (req,res) => {
     const user = await User.findOne({email: req.body.email,
         passwordHash: req.body.password
     })
     const secret = process.env.secret;
     if(!user) {
-        return res.status(400).send('The user not found');
+        return res.status(400).send({message:'The username or password is incorrect'});
     }
 
     if(user) {
