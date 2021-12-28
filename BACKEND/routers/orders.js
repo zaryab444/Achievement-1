@@ -8,7 +8,9 @@ router.get('/', async (req, res) =>{
     const orderList = await Order.find
     //we use name we dont need all info of user we only need name
     //also you sort date after populate method like populate().sort('dateOrdered')
-    ().populate('user', 'name');
+    ().populate('user', 'name').populate({
+        path:'orderItems', populate:{
+        path: 'product', populate: 'category'}});
     if(!orderList){
         res.status(500).json({success: false})
     }
@@ -41,6 +43,18 @@ router.post('/', async(req,res) =>{
     }))
 
     const orderItemsIdsResolved = await orderItemsIds;
+
+     const totalPrices = await Promise.all(
+         orderItemsIdsResolved.map(async (orderItemId)=>{
+             const orderItem = await OrderItem.findById(orderItemId).populate('product', 'price');
+
+             const totalPrice = orderItem.product.price * orderItem.quantity;
+             return totalPrice
+         })
+     )
+
+     const totalPrice = totalPrices.reduce((a,b) => a+b , 0);
+
     let order = new Order({
        orderItems:orderItemsIdsResolved,
        shippingAddress1: req.body.shippingAddress1,
@@ -50,7 +64,7 @@ router.post('/', async(req,res) =>{
        country: req.body.country,
        phone: req.body.phone,
        status: req.body.status,
-       totalPrice: req.body.totalPrice,
+       totalPrice: totalPrice,
        user: req.body.user,
 
 
@@ -86,8 +100,11 @@ router.put('/:id', async(req,res)=>{
   router.delete('/:id', (req,res) =>{
 
     //this is the promise way logic part2 using then
-    Order.findByIdAndRemove(req.params.id).then(Order =>{
-        if(Order){
+    Order.findByIdAndRemove(req.params.id).then(async order =>{
+        if(order){
+            await order.orderItems.map(async orderItem =>{
+                await OrderItem.findByIdAndRemove(orderItem)
+            })
             return res.status(200).json({success: true, message: ' the Order is deleted'})
         }
         else{
