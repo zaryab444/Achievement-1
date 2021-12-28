@@ -116,4 +116,48 @@ router.put('/:id', async(req,res)=>{
 })
 
 
+//http://localhost:3000/api/v1/orders/get/totalsales
+
+router.get('/get/totalsales', async(req,res)=>{
+    const totalSales = await Order.aggregate([
+        {
+        $group:{_id: null, totalsales : {$sum: '$totalPrice'} }}
+    ])
+
+    if(!totalSales){
+        return res.status(400).send('The order sales cannot be generated');
+    }
+
+    res.send({totalsales: totalSales.pop().totalsales})
+})
+
+//http://localhost:3000/api/v1/orders/get/count
+router.get(`/get/count`, async (req, res) => {
+
+  const orderCount = await Order.countDocuments()
+
+  if(!orderCount){
+      res.status(500).json({success: false})
+  }
+
+  res.send({
+      orderCount: orderCount
+  });
+  })
+
+
+  router.get('/get/userorders/:userid', async (req, res) =>{
+   
+    const userorderList = await Order.find
+    ({
+        user: req.params.userid
+    }).populate({
+        path:'orderItems', populate:{
+        path: 'product', populate: 'category'}});
+    if(!userorderList){
+        res.status(500).json({success: false})
+    }
+    res.send(userorderList)
+})
+
 module.exports = router;
