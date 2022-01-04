@@ -10,9 +10,11 @@ function authJwt(){
     }).unless({
         path :[
             //this is except api using without token
+        { url: /\/public\/uploads(.*)/, methods: ['GET', 'OPTIONS'] },
            {url:`${api}/products`, method:['GET', 'OPTION']},
            {url: `${api}/products/get/count`,  method:['GET', 'OPTION']},
            {url: `${api}/categories`,  method:['GET', 'OPTION']},
+         //  {url : '/public/uploads/' , methods : ['GET','OPTIONS']} ,
          
            `${api}/users/register`,
             `${api}/users/login`
