@@ -193,4 +193,40 @@ router.get(`/get/featured/:count`, async (req,res) =>{
 
 
 
+//put: http://localhost:3000/api/v1/products/gallery-images/:productid
+//Note: when you upload multiple images clear the image cancel the image field first
+
+router.put('/gallery-images/:id',uploadOptions.
+//maximum i need 10 images file in one request
+array('images', 10), 
+async (req, res)=> {
+  if(!mongoose.isValidObjectId(req.params.id)) {
+    return res.status(400).send('Invalid Product Id')
+ }
+ 
+ const files = req.files
+ let imagesPaths = [];
+ const basePath = `${req.protocol}://${req.get('host')}/public/uploads/`;
+ if(files){
+    files.map(file =>{
+      imagesPaths.push(`${basePath}${file.filename}`)
+    })
+ }
+ 
+ const product = await Product.findByIdAndUpdate(
+  req.params.id,
+  {
+     images:imagesPaths
+  },
+  { new: true}
+)
+if(!product)
+return res.status(500).send('The product cannot be created')
+
+res.send(product)
+}
+)
+
+
+
   module.exports = router;
