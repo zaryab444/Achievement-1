@@ -24,4 +24,8 @@ nx g component pages/product-list --project=ngshop
 create shared library
 npx nx g @nrwl/workspace:lib ui
 npx nx g @nrwl/workspace:lib orders
+
+
+complete understanding of NX
+https://duncanhunter.gitbook.io/enterprise-angular-applications-with-ngrx-and-nx/introduction/2-creating-an-nx-workspace
  
