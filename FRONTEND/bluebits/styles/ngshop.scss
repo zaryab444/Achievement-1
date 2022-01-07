@@ -1,0 +1,21 @@
+//make sure you import the file in order wise
+
+//Base
+@import './base/colors.scss';
+@import './base/fonts.scss';
+@import './base/mixin.scss';
+@import './base/configuration.scss';
+
+
+
+
+//Pages
+@import './apps/shop/pages/home-page.scss';
+@import './apps/shop/pages/products-list-page.scss';
+
+//shared
+@import './apps/shop/shared/header.scss';
+@import './apps/shop/shared/footer.scss';
+
+//libs
+@import './libs/ui/ui.scss';
