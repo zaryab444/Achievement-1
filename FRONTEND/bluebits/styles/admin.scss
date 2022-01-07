@@ -1,5 +1,19 @@
+//make sure you import the file in order wise
+
+//Base
 @import './base/colors.scss';
 @import './base/fonts.scss';
 @import './base/mixin.scss';
 @import './base/configuration.scss';
 
+//Libraries we use prime ng libraries
+@import '~primeicons/primeicons.css';
+@import '~primeng/resources/themes/saga-blue/theme.css';
+@import '~primeng/resources/primeng.min.css';
+
+@import '~primeflex/primeflex.css';
+
+
+
+//libs
+@import './libs/ui/ui.scss';
