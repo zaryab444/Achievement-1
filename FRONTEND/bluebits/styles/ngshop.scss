@@ -4,10 +4,14 @@
 @import './base/colors.scss';
 @import './base/fonts.scss';
 @import './base/mixin.scss';
+
+
+//Libraries we use primeng libraries
+@import '~primeicons/primeicons.css';
+@import '~primeng/resources/themes/saga-blue/theme.css';
+@import '~primeng/resources/primeng.min.css';
+
 @import './base/configuration.scss';
-
-
-
 
 //Pages
 @import './apps/shop/pages/home-page.scss';
