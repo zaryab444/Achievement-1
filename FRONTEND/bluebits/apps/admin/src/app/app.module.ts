@@ -12,6 +12,7 @@ import {CardModule} from 'primeng/card';
 import {ToolbarModule} from 'primeng/toolbar';
 import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
+import { HttpClientModule } from '@angular/common/http';
 
 
 const routes: Routes = [
@@ -38,6 +39,7 @@ const routes: Routes = [
   declarations: [AppComponent, NxWelcomeComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent],
   imports: [
     BrowserModule,
+    HttpClientModule,
     CardModule,
     ToolbarModule,
     ButtonModule,
