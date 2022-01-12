@@ -4,6 +4,8 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+//Get
+//http://localhost:3000/api/v1/users/
 router.get(`/`, async (req, res) =>{
     const userList = await User.find().select('-passwordHash');
 
