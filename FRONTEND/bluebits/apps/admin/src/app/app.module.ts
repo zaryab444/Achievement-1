@@ -12,7 +12,10 @@ import {CardModule} from 'primeng/card';
 import {ToolbarModule} from 'primeng/toolbar';
 import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
+import {InputTextModule} from 'primeng/inputtext';
+
 import { HttpClientModule } from '@angular/common/http';
+import { CategoryFormComponent } from './categories/category-form/category-form.component';
 
 
 const routes: Routes = [
@@ -26,6 +29,10 @@ const routes: Routes = [
     {
       path: 'categories',
       component: CategoriesListComponent
+    },
+    {
+      path:'category/form',
+      component: CategoryFormComponent
     }
     ]
     }
@@ -36,7 +43,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent],
+  declarations: [AppComponent, NxWelcomeComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent, CategoryFormComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -44,6 +51,7 @@ const routes: Routes = [
     ToolbarModule,
     ButtonModule,
     TableModule,
+    InputTextModule,
     RouterModule.forRoot(routes),
   ],
   providers: [],

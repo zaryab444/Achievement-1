@@ -1,0 +1,51 @@
+<div class="admin-page  col-12 md-6 lg-3"
+>
+<p-card header="Add Category" subheader="You can add or edit categories here" >
+
+  <div class="grid mb-5">
+    <div class="col-12">
+      <p-toolbar>
+        <div class="toolbar-group-left"></div>
+        <div class="toolbar-group-right">
+          <p-button
+          styleClass="button-primary mr-2"
+          label="Create"
+          icon="pi pi-plus"
+
+          ></p-button>
+
+          <p-button
+          styleClass="p-button-secondary" label="cancel"
+          icon="pi pi-arrow-circle-left"
+          routerLink="/category/form"
+          ></p-button>
+        </div>
+      </p-toolbar>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="col-12">
+ <form>
+  <div class="fluid">
+    <div class="field grid">
+        <label for="name" class="col-12 mb-2 md-2 mb-md-0">Name</label>
+        <div class="col-12 md-10">
+            <input id="name" type="text" pInputText>
+        </div>
+    </div>
+    <div class="field grid">
+        <label for="icon" class="col-12 mb-2 md-2 mb-md-0">Icon</label>
+        <div class="col-12 md-10">
+            <input id="icon" type="text" pInputText>
+        </div>
+    </div>
+</div>
+ </form>
+    </div>
+  </div>
+
+
+
+</p-card>
+</div>
