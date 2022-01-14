@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -12,10 +13,14 @@ import {CardModule} from 'primeng/card';
 import {ToolbarModule} from 'primeng/toolbar';
 import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
+import {ToastModule} from 'primeng/toast';
+
 import {InputTextModule} from 'primeng/inputtext';
 
 import { HttpClientModule } from '@angular/common/http';
 import { CategoryFormComponent } from './categories/category-form/category-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 
 
 const routes: Routes = [
@@ -46,15 +51,19 @@ const routes: Routes = [
   declarations: [AppComponent, NxWelcomeComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent, CategoryFormComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     CardModule,
     ToolbarModule,
     ButtonModule,
     TableModule,
+    ToastModule,
     InputTextModule,
     RouterModule.forRoot(routes),
   ],
-  providers: [],
+  providers: [MessageService ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
