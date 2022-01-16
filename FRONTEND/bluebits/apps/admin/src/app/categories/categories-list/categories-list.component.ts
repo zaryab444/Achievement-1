@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {CategoriesService, Category} from '@bluebits/product';
 import { ConfirmationService, MessageService } from 'primeng/api';
 @Component({
@@ -13,7 +14,8 @@ export class CategoriesListComponent implements OnInit {
   constructor(
     private confirmationService: ConfirmationService,
     private categoriesService: CategoriesService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router: Router
 
     ) { }
 
@@ -48,6 +50,12 @@ export class CategoriesListComponent implements OnInit {
 
 
 }
+
+updateCategory(categoryId :string){
+   this.router.navigateByUrl(`category/form/${categoryId}`)
+}
+
+
 
 private _getCategories(){
   this.categoriesService.getCategories().subscribe(cats => {

@@ -30,19 +30,20 @@
 
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-product>
+        <ng-template pTemplate="body" let-category>
             <tr>
-                <td>{{product._id}}</td>
-                <td>{{product.name}}</td>
-                <td>{{product.icon}}</td>
+                <td>{{category._id}}</td>
+                <td>{{category.name}}</td>
+                <td>{{category.icon}}</td>
                 <td>
                   <p-button
-                  (click)="deleteCategory(product._id)"
+                  (click)="deleteCategory(category._id)"
                   styleClass="p-button-danger mr-2"
                   icon="pi pi-trash"></p-button>
 
 
                  <p-button
+                 (click)="updateCategory(category._id)"
                  styleClass="p-button-success"
                  icon="pi pi-pencil"></p-button>
                 </td>
