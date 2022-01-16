@@ -1,3 +1,5 @@
+<p-toast></p-toast>
+
 <div class="admin-page  p-col-12 p-md-6 p-lg-3"
 >
 <p-card header="Categories" subheader="List of all categories" >
@@ -24,6 +26,7 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Icon</th>
+                <th></th>
 
             </tr>
         </ng-template>
@@ -32,6 +35,18 @@
                 <td>{{product._id}}</td>
                 <td>{{product.name}}</td>
                 <td>{{product.icon}}</td>
+                <td>
+                  <p-button
+                  (click)="deleteCategory(product._id)"
+                  styleClass="p-button-danger mr-2"
+                  icon="pi pi-trash"></p-button>
+
+
+                 <p-button
+                 styleClass="p-button-success"
+                 icon="pi pi-pencil"></p-button>
+                </td>
+
 
             </tr>
         </ng-template>
@@ -43,3 +58,4 @@
 
 </p-card>
 </div>
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>

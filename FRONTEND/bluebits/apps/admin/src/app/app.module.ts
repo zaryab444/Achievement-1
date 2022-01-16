@@ -21,6 +21,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { CategoryFormComponent } from './categories/category-form/category-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MessageService } from 'primeng/api';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
+
 
 
 const routes: Routes = [
@@ -61,9 +64,10 @@ const routes: Routes = [
     TableModule,
     ToastModule,
     InputTextModule,
+    ConfirmDialogModule,
     RouterModule.forRoot(routes),
   ],
-  providers: [MessageService ],
+  providers: [MessageService, ConfirmationService ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

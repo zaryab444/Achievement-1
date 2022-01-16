@@ -32,13 +32,17 @@
     <label for="name" class="col-fixed" style="width:100px">Name</label>
     <div class="col">
         <input formControlName="name" id="name" type="text" pInputText>
-        <small *ngIf="form.controls" class="p-error">Name is required!</small>
+        <small *ngIf="categroyForm.name.invalid && isSubmitted" class="p-error"
+        >Name is required</small>
     </div>
 </div>
 <div class="field grid">
     <label for="icon" class="col-fixed" style="width:100px">Icon</label>
     <div class="col">
         <input formControlName="icon" id="icon" type="text" pInputText>
+        <small *ngIf="categroyForm.icon.invalid && isSubmitted" class="p-error"
+        >Icon is required</small
+      >
     </div>
 </div>
  </form>
