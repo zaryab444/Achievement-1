@@ -32,6 +32,7 @@ export class CategoryFormComponent implements OnInit {
        this.form = this.formBuilder.group({
             name:['',Validators.required],
             icon:['',Validators.required],
+            color:['#fff']
        });
 
        //this method check the form is edit mode or not
@@ -46,6 +47,7 @@ export class CategoryFormComponent implements OnInit {
        this.categoriesService.getCategory(params.id).subscribe((category)=>{
         this.categroyForm.name.setValue(category.name);
         this.categroyForm.icon.setValue(category.icon);
+        this.categroyForm.color.setValue(category.color);
        })
 
      }
@@ -60,7 +62,8 @@ export class CategoryFormComponent implements OnInit {
     const category : Category={
       _id: this.currentCategoryId,
       name: this.categroyForm.name.value,
-      icon: this.categroyForm.icon.value
+      icon: this.categroyForm.icon.value,
+      color: this.categroyForm.color.value
 
     }
     if(this.editmode){

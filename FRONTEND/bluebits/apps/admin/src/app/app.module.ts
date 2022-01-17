@@ -14,6 +14,7 @@ import {ToolbarModule} from 'primeng/toolbar';
 import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
 import {ToastModule} from 'primeng/toast';
+import {ColorPickerModule} from 'primeng/colorpicker';
 
 import {InputTextModule} from 'primeng/inputtext';
 
@@ -68,6 +69,7 @@ const routes: Routes = [
     ButtonModule,
     TableModule,
     ToastModule,
+    ColorPickerModule,
     InputTextModule,
     ConfirmDialogModule,
     RouterModule.forRoot(routes),
