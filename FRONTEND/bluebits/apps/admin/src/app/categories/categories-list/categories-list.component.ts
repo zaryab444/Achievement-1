@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import {CategoriesService, Category} from '@bluebits/product';
 import { ConfirmationService, MessageService } from 'primeng/api';
 @Component({
-  selector: 'bluebits-categories-list',
+  selector: 'admin-categories-list',
   templateUrl: './categories-list.component.html',
   styleUrls: ['./categories-list.component.scss']
 })

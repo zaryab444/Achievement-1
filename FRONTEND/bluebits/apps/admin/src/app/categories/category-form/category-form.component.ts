@@ -7,7 +7,7 @@ import { MessageService } from 'primeng/api';
 import { timer } from 'rxjs';
 
 @Component({
-  selector: 'bluebits-category-form',
+  selector: 'admin-category-form',
   templateUrl: './category-form.component.html',
   styleUrls: ['./category-form.component.scss']
 })
@@ -15,7 +15,7 @@ export class CategoryFormComponent implements OnInit {
 
 
   form: FormGroup;
-  isSubmitted: boolean = false;
+  isSubmitted = false;
 
   //we initialize false  because form by default not edit mode
   editmode = false;
@@ -76,10 +76,12 @@ export class CategoryFormComponent implements OnInit {
   }
 
   private _addCategory(category: Category){
-    this.categoriesService.createCategory(category).subscribe(response =>{
+    this.categoriesService.createCategory(category).subscribe((category: Category) =>{
 
-      this.messageService.add({severity:'success', summary:'Success', detail:'Category is Created'});
-      timer(2000).toPromise().then(done =>{
+      this.messageService.add({severity:'success',
+      summary:'Success',
+      detail:`Category  ${category.name} is Created`});
+      timer(2000).toPromise().then(() =>{
         this.location.back();
       })
 
