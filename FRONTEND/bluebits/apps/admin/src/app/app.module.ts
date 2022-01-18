@@ -17,6 +17,11 @@ import {ToastModule} from 'primeng/toast';
 import {ColorPickerModule} from 'primeng/colorpicker';
 
 import {InputTextModule} from 'primeng/inputtext';
+import {InputNumberModule} from 'primeng/inputnumber';
+import {InputSwitchModule} from 'primeng/inputswitch';
+import {EditorModule} from 'primeng/editor';
+
+import {DropdownModule} from 'primeng/dropdown';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -88,6 +93,10 @@ const routes: Routes = [
     ToastModule,
     ColorPickerModule,
     InputTextModule,
+    InputNumberModule,
+    InputSwitchModule,
+    DropdownModule,
+    EditorModule,
     ConfirmDialogModule,
     RouterModule.forRoot(routes),
   ],
