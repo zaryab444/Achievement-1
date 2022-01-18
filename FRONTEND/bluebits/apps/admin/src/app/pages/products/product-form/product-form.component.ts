@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriesService } from '@bluebits/product';
 
 @Component({
-  selector: 'bluebits-product-form',
+  selector: 'admin-product-form',
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.scss']
 })
@@ -12,6 +12,7 @@ export class ProductFormComponent implements OnInit {
   form: FormGroup;
   isSubmitted = false;
   catagories= [];
+  imageDisplay: string | ArrayBuffer;
   constructor(
     private formBuilder: FormBuilder,
     private categoriesService : CategoriesService
@@ -40,6 +41,17 @@ export class ProductFormComponent implements OnInit {
    this.categoriesService.getCategories().subscribe(categoies =>{
      this.catagories = categoies
    })
+  }
+
+  onImageUpload(event){
+     const file = event.target.files[0];
+     if(file) {
+       const fileReader = new FileReader();
+       fileReader.onload = () =>{
+         this.imageDisplay = fileReader.result;
+       };
+       fileReader.readAsDataURL(file);
+     }
   }
   get productForm(){
     return this.form.controls;
