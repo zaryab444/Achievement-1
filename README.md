@@ -17,7 +17,6 @@ and for admin use nx serve admin
 create component inside page folder
 
 >nx g component pages/home-page --project=ngshop
-
 nx g component shared/shell --project=admin
 
 nx g component shared/sidebar --project=admin

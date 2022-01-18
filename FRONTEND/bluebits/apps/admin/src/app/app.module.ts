@@ -26,6 +26,8 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
 import { CategoriesListComponent } from './pages/categories/categories-list/categories-list.component';
 import { CategoryFormComponent } from './pages/categories/category-form/category-form.component';
+import { ProductListComponent } from './pages/products/product-list/product-list.component';
+import { ProductFormComponent } from './pages/products/product-form/product-form.component';
 
 
 
@@ -50,6 +52,19 @@ const routes: Routes = [
       component: CategoryFormComponent
     },
 
+    {
+      path: 'products',
+      component: ProductListComponent
+    },
+    {
+      path:'products/form',
+      component: ProductFormComponent
+    },
+    {
+      path:'products/form/:id',
+      component: ProductFormComponent
+    },
+
     ]
     }
 ];
@@ -59,7 +74,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent, CategoryFormComponent],
+  declarations: [AppComponent, NxWelcomeComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent, CategoryFormComponent, ProductListComponent,ProductFormComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
