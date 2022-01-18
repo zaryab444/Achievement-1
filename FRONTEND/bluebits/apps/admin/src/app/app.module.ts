@@ -8,7 +8,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ShellComponent } from './shared/shell/shell.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { CategoriesListComponent } from './categories/categories-list/categories-list.component';
+
 import {CardModule} from 'primeng/card';
 import {ToolbarModule} from 'primeng/toolbar';
 import {ButtonModule} from 'primeng/button';
@@ -19,11 +19,13 @@ import {ColorPickerModule} from 'primeng/colorpicker';
 import {InputTextModule} from 'primeng/inputtext';
 
 import { HttpClientModule } from '@angular/common/http';
-import { CategoryFormComponent } from './categories/category-form/category-form.component';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
+import { CategoriesListComponent } from './pages/categories/categories-list/categories-list.component';
+import { CategoryFormComponent } from './pages/categories/category-form/category-form.component';
 
 
 

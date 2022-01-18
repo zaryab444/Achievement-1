@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriesService, Category } from '@bluebits/product';
 import { MessageService } from 'primeng/api';
 import { timer } from 'rxjs';
@@ -25,7 +25,8 @@ export class CategoryFormComponent implements OnInit {
     private categoriesService : CategoriesService,
     private messageService: MessageService,
     private location: Location,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -113,7 +114,9 @@ export class CategoryFormComponent implements OnInit {
 
     return this.form.controls;
   }
-
+  onCancel(){
+    this.router.navigateByUrl('/categories')
+  }
 
 
 }
