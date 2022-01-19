@@ -4,6 +4,7 @@ import { CategoriesService, Category, Product, ProductsService } from '@bluebits
 import { MessageService } from 'primeng/api';
 import { timer } from 'rxjs';
 import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'admin-product-form',
   templateUrl: './product-form.component.html',
@@ -23,12 +24,13 @@ export class ProductFormComponent implements OnInit {
     private categoriesService: CategoriesService,
     private messageService: MessageService,
     private location: Location,
-
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this._initForm();
     this._getCategories();
+    this._checkEditMode();
 
   }
 
@@ -50,6 +52,47 @@ export class ProductFormComponent implements OnInit {
     this.categoriesService.getCategories().subscribe((categories) => {
       this.catagories = categories;
     });
+  }
+
+  private _checkEditMode(){
+   this.route.params.subscribe((params)=>{
+     if(params.id){
+       this.editmode = true;
+       this.currentProductId = params.id;
+       this.productsService.getProduct(params.id).subscribe((product)=>{
+         this.productForm.name.setValue(product.name);
+         this.productForm.category.setValue(product.category.id);
+         this.productForm.brand.setValue(product.brand);
+         this.productForm.price.setValue(product.price);
+         this.productForm.countInStock.setValue(product.countInStock);
+         this.productForm.isFeatured.setValue(product.isFeatured);
+         this.productForm.description.setValue(product.description);
+         this.productForm.richDescription.setValue(product.richDescription);
+         this.imageDisplay = product.image;
+
+       })
+     }
+   })
+  }
+  private _updateProduct(productFormData: FormData){
+      this.productsService.updateProduct(productFormData, this.currentProductId).subscribe(() =>{
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Product is updated'
+        });
+        timer(2000).toPromise().then(() =>{
+          this.location.back();
+        });
+      },
+      () => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Product is not updated'
+        });
+      }
+      );
   }
 
   private _addProduct(productData: FormData) {
@@ -88,8 +131,13 @@ export class ProductFormComponent implements OnInit {
     Object.keys(this.productForm).map((key) => {
       productFormData.append(key, this.productForm[key].value);
     });
+     if(this.editmode){
+       this._updateProduct(productFormData);
+     }
+     else{
+       this._addProduct(productFormData)
+     }
 
-      this._addProduct(productFormData);
 
   }
   onCancle() {}

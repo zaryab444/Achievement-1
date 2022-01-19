@@ -18,17 +18,17 @@ export class ProductsService {
   }
 
   //we remove array in <Category model> because its single get by id
-  // getCategory(categoryId: string): Observable  <Category>{
-  //   return this.http.get<Category>(`${this.apiURLCategories}/${categoryId}` )
-  // }
+  getProduct(productId: string): Observable  <Product>{
+    return this.http.get<Product>(`${this.apiURLProducts}/${productId}` )
+  }
 
   createProduct(productData: FormData): Observable<Product> {
     return this.http.post<Product>(this.apiURLProducts, productData);
   }
 
-  // updateCategory(category: Category): Observable<Category>{
-  //   return this.http.put<Category>(`${this.apiURLCategories}/${category._id}`,category)
-  // }
+  updateProduct(productData: FormData , productid: string): Observable<Product>{
+    return this.http.put<Product>(`${this.apiURLProducts}/${productid}`,productData)
+  }
 
 
 
