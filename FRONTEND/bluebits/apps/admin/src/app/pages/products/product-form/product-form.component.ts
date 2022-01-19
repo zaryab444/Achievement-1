@@ -70,6 +70,10 @@ export class ProductFormComponent implements OnInit {
          this.productForm.richDescription.setValue(product.richDescription);
          this.imageDisplay = product.image;
 
+         //these two lines make productimage not valid in edit case
+         this.productForm.image.setValidators([]);
+         this.productForm.image.updateValueAndValidity();
+
        })
      }
    })
