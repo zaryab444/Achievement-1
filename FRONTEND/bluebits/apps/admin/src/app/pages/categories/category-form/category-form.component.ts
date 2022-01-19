@@ -61,7 +61,7 @@ export class CategoryFormComponent implements OnInit {
       return;
     }
     const category : Category={
-      _id: this.currentCategoryId,
+      id: this.currentCategoryId,
       name: this.categroyForm.name.value,
       icon: this.categroyForm.icon.value,
       color: this.categroyForm.color.value

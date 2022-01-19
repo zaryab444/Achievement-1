@@ -9,12 +9,12 @@ import { Product } from "../models/product";
 })
 
 export class ProductsService {
-  apiURLCategories = environment.apiURL + 'products';
+  apiURLProducts = environment.apiURL + 'products';
   constructor(private http: HttpClient) {}
 
 
   getProducts(): Observable  <Product[]>{
-    return this.http.get<Product[]>(this.apiURLCategories);
+    return this.http.get<Product[]>(this.apiURLProducts);
   }
 
   //we remove array in <Category model> because its single get by id
@@ -22,9 +22,9 @@ export class ProductsService {
   //   return this.http.get<Category>(`${this.apiURLCategories}/${categoryId}` )
   // }
 
-  // createCategory(category: Category): Observable<Category>{
-  //   return this.http.post<Category>(this.apiURLCategories, category)
-  // }
+  createProduct(productData: FormData): Observable<Product> {
+    return this.http.post<Product>(this.apiURLProducts, productData);
+  }
 
   // updateCategory(category: Category): Observable<Category>{
   //   return this.http.put<Category>(`${this.apiURLCategories}/${category._id}`,category)
