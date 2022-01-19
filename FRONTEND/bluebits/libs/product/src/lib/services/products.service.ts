@@ -32,9 +32,9 @@ export class ProductsService {
 
 
 
-  // deleteCategory(categoryId: string):Observable<any> {
-  //   return this.http.delete<any>(`${this.apiURLCategories}/${categoryId}`)
-  // }
+  deleteProduct(productId: string): Observable<any> {
+    return this.http.delete<any>(`${this.apiURLProducts}/${productId}`);
+  }
 
 
 }

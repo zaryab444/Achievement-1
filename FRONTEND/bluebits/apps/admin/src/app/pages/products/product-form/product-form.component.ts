@@ -95,6 +95,8 @@ export class ProductFormComponent implements OnInit {
       );
   }
 
+
+
   private _addProduct(productData: FormData) {
     this.productsService.createProduct(productData).subscribe(
       (product: Product) => {
