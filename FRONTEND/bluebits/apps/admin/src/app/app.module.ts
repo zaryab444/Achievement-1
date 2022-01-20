@@ -20,8 +20,10 @@ import {InputTextModule} from 'primeng/inputtext';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import {EditorModule} from 'primeng/editor';
+import {InputMaskModule} from 'primeng/inputmask';
 
 import {DropdownModule} from 'primeng/dropdown';
+import { TagModule } from 'primeng/tag';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -33,6 +35,8 @@ import { CategoriesListComponent } from './pages/categories/categories-list/cate
 import { CategoryFormComponent } from './pages/categories/category-form/category-form.component';
 import { ProductListComponent } from './pages/products/product-list/product-list.component';
 import { ProductFormComponent } from './pages/products/product-form/product-form.component';
+import { UsersListComponent } from './pages/users/users-list/users-list.component';
+import { UsersFormComponent } from './pages/users/users-form/users-form.component';
 
 
 
@@ -70,6 +74,18 @@ const routes: Routes = [
       component: ProductFormComponent
     },
 
+    {
+      path: 'users',
+      component: UsersListComponent
+    },
+    {
+      path:'users/form',
+      component: UsersFormComponent
+    },
+    {
+      path:'users/form/:id',
+      component: UsersFormComponent
+    },
     ]
     }
 ];
@@ -79,7 +95,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent, CategoryFormComponent, ProductListComponent,ProductFormComponent],
+  declarations: [AppComponent, NxWelcomeComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent, CategoryFormComponent, ProductListComponent,ProductFormComponent, UsersListComponent, UsersFormComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -96,7 +112,9 @@ const routes: Routes = [
     InputNumberModule,
     InputSwitchModule,
     DropdownModule,
+    TagModule,
     EditorModule,
+    InputMaskModule,
     ConfirmDialogModule,
     RouterModule.forRoot(routes),
   ],

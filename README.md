@@ -23,7 +23,7 @@ nx g component shared/sidebar --project=admin
 
 
 nx g component pages/product-list --project=ngshop
-
+nx g component pages/users/users-list --project=admin
 
 create shared library
 npx nx g @nrwl/workspace:lib ui

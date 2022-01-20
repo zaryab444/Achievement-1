@@ -28,7 +28,12 @@ router.post('/', async (req,res)=>{
     let user = new User({
         name: req.body.name,
         email: req.body.email,
-        passwordHash: bcrypt.hashSync(req.body.password, 10),
+
+        //future me uncomment krna ha coz yeh line password encrypt krti ha 
+       passwordHash: await bcrypt.hashSync( req.body.password, 10),
+
+       //ise future me comment krna ha coz yeh line passsword encrypt nhi krti 
+      // passwordHash:  req.body.password,
         phone: req.body.phone,
         isAdmin: req.body.isAdmin,
         street: req.body.street,
