@@ -50,7 +50,9 @@ deleteUser(userId: string){
 }
 
 
-
+getCountryName(countryKey: string){
+     if(countryKey) return this.usersService.getCountry(countryKey);
+}
 
 
 updateUser(userid: string){

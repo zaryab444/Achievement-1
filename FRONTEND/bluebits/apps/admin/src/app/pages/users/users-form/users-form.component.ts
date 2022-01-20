@@ -5,6 +5,7 @@ import { User, UsersService } from '@bluebits/users';
 import { MessageService } from 'primeng/api';
 import { Location } from '@angular/common';
 import { timer } from 'rxjs';
+
 @Component({
   selector: 'bluebits-users-form',
   templateUrl: './users-form.component.html',
@@ -27,6 +28,7 @@ export class UsersFormComponent implements OnInit {
 
   ngOnInit(): void {
     this._initUserForm();
+    this._getcountries();
     this._checkEditMode();
   }
 
@@ -45,6 +47,11 @@ export class UsersFormComponent implements OnInit {
     });
   }
 
+  private _getcountries(){
+   this.countries = this.usersService.getCountries();
+
+
+  }
   private _addUser(user: User) {
     this.usersService.createUser(user).subscribe(
       (user: User) => {
