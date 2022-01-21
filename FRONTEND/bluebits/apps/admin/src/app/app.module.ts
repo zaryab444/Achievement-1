@@ -37,6 +37,9 @@ import { ProductListComponent } from './pages/products/product-list/product-list
 import { ProductFormComponent } from './pages/products/product-form/product-form.component';
 import { UsersListComponent } from './pages/users/users-list/users-list.component';
 import { UsersFormComponent } from './pages/users/users-form/users-form.component';
+import { OrdersDetailComponent } from './pages/orders/orders-detail/orders-detail.component';
+import { OrdersListComponent } from './pages/orders/orders-list/orders-list.component';
+
 
 
 
@@ -86,6 +89,16 @@ const routes: Routes = [
       path:'users/form/:id',
       component: UsersFormComponent
     },
+
+    {
+      path: 'orders',
+      component: OrdersListComponent
+    },
+    {
+      path: 'orders/:id',
+      component: OrdersDetailComponent
+    },
+
     ]
     }
 ];
@@ -95,7 +108,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent, CategoryFormComponent, ProductListComponent,ProductFormComponent, UsersListComponent, UsersFormComponent],
+  declarations: [AppComponent, NxWelcomeComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent, CategoryFormComponent, ProductListComponent,ProductFormComponent, UsersListComponent, UsersFormComponent, OrdersDetailComponent, OrdersListComponent ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
