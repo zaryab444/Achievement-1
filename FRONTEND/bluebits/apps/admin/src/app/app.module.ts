@@ -21,7 +21,7 @@ import {InputNumberModule} from 'primeng/inputnumber';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import {EditorModule} from 'primeng/editor';
 import {InputMaskModule} from 'primeng/inputmask';
-
+import { ChipModule } from "primeng/chip";
 import {DropdownModule} from 'primeng/dropdown';
 import { TagModule } from 'primeng/tag';
 
@@ -126,6 +126,7 @@ const routes: Routes = [
     InputSwitchModule,
     DropdownModule,
     TagModule,
+    ChipModule,
     EditorModule,
     InputMaskModule,
     ConfirmDialogModule,

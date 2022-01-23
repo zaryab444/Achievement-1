@@ -24,8 +24,34 @@
 
                 <td>{{order.user.name}}</td>
                 <td>{{order.totalPrice}}</td>
-                <td>{{order.dateOrdered}}</td>
-                <td>{{order.status}}</td>
+                <td>{{order.dateOrdered  | date: 'short'}}</td>
+
+
+   <td>
+     <div>
+     <p-tag
+     [severity]=" (order.status == orderStatus.pending ) ?  'warning' :
+     (order.status ==  orderStatus.approved) ?  'info' :
+     (order.status == orderStatus.processed) ? 'success'  :
+     (order.status ==  orderStatus.shiped) ? 'info' :
+     (order.status ==  orderStatus.delivered) ? 'success':
+     'danger'"
+
+
+    >
+
+    <small>
+      {{
+      (order.status == orderStatus.failed ) ? 'Failed' :
+      (order.status == orderStatus.delivered) ? 'Delivered' :
+      (order.status == orderStatus.shiped) ? 'Shipped' :
+      (order.status == orderStatus.pending) ? 'Pending' :
+      (order.status == orderStatus.processed) ? 'Processed' :
+    'Refunded' }}
+    </small>
+  </p-tag>
+</div>
+</td>
 
 
                 <td>
