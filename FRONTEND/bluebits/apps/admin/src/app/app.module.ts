@@ -24,6 +24,7 @@ import {InputMaskModule} from 'primeng/inputmask';
 import { ChipModule } from "primeng/chip";
 import {DropdownModule} from 'primeng/dropdown';
 import { TagModule } from 'primeng/tag';
+import {FieldsetModule} from 'primeng/fieldset';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -128,6 +129,7 @@ const routes: Routes = [
     TagModule,
     ChipModule,
     EditorModule,
+    FieldsetModule,
     InputMaskModule,
     ConfirmDialogModule,
     RouterModule.forRoot(routes),

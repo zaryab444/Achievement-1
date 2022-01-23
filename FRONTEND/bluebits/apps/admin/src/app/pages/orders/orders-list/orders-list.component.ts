@@ -31,10 +31,18 @@ export class OrdersListComponent implements OnInit {
     this._getOrders();
   }
 
-  private _getOrders(){
+   _getOrders(){
     this.orderService.getOrders().subscribe(data =>{
       this.orders = data;
     })
+  }
+
+   showOrder(orderId){
+       this.router.navigateByUrl(`orders/${orderId}`)
+  }
+
+  deleteOrder(orderId){
+
   }
 
 }

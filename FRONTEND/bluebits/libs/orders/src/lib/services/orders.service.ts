@@ -10,32 +10,19 @@ import { Order } from "../models/orders";
 })
 
 export class OrderService {
-  apiURLCategories = environment.apiURL + 'orders';
+  apiURLOrders = environment.apiURL + 'orders';
   constructor(private http: HttpClient) {}
 
 
   getOrders(): Observable  <Order[]>{
-    return this.http.get<Order[]>(this.apiURLCategories);
+    return this.http.get<Order[]>(this.apiURLOrders);
   }
 
-  //we remove array in <Category model> because its single get by id
-  // getCategory(categoryId: string): Observable  <Category>{
-  //   return this.http.get<Category>(`${this.apiURLCategories}/${categoryId}` )
-  // }
-
-  // createCategory(category: Category): Observable<Category>{
-  //   return this.http.post<Category>(this.apiURLCategories, category)
-  // }
-
-  // updateCategory(category: Category): Observable<Category>{
-  //   return this.http.put<Category>(`${this.apiURLCategories}/${category.id}`,category)
-  // }
+  getOrder(orderId: string): Observable<Order>{
+    return this.http.get<Order>(`${this.apiURLOrders}/${orderId}`);
+  }
 
 
-
-  // deleteCategory(categoryId: string):Observable<any> {
-  //   return this.http.delete<any>(`${this.apiURLCategories}/${categoryId}`)
-  // }
 
 
 }
