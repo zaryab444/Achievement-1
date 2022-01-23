@@ -36,3 +36,17 @@ https://duncanhunter.gitbook.io/enterprise-angular-applications-with-ngrx-and-nx
  
 use for normalze your styling
 npm install normalize.css
+
+
+
+how to edit image in website using angular stackblitz
+
+https://stackblitz.com/edit/ngx-image-editor-demo?file=src%2Fapp%2Fapp.module.ts
+
+https://www.npmjs.com/package/ngx-image-editor
+
+
+2 shiped
+1 pending
+0 processed
+3 delivered
