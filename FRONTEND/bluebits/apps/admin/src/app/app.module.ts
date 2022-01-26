@@ -40,6 +40,7 @@ import { UsersListComponent } from './pages/users/users-list/users-list.componen
 import { UsersFormComponent } from './pages/users/users-form/users-form.component';
 import { OrdersDetailComponent } from './pages/orders/orders-detail/orders-detail.component';
 import { OrdersListComponent } from './pages/orders/orders-list/orders-list.component';
+import { UserModule } from '@bluebits/users';
 
 
 
@@ -132,6 +133,7 @@ const routes: Routes = [
     FieldsetModule,
     InputMaskModule,
     ConfirmDialogModule,
+    UserModule,
     RouterModule.forRoot(routes),
   ],
   providers: [MessageService, ConfirmationService ],
