@@ -1,5 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'login',
@@ -10,7 +12,12 @@ export class LoginComponent implements OnInit {
 
   loginFormGroup: any =  FormGroup;
   isSubmitted = false;
-  constructor(private formBuilder: FormBuilder) { }
+  authError = false;
+  authMessage = 'Email or Password are wrong';
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService
+    ) { }
 
   ngOnInit(): void {
     this._initLoginForm();
@@ -26,9 +33,27 @@ export class LoginComponent implements OnInit {
 
   get loginForm() {
     return this.loginFormGroup.controls;
+
   }
 
   onSubmit(){
     this.isSubmitted = true
+    if(this.loginFormGroup.invalid) return;
+    const loginData = {
+      email: this.loginForm.email.value,
+      password: this.loginForm.password.value
+
+    }
+    this.authService.login(loginData.email , loginData.password).subscribe((user) =>{
+      console.log(user);
+      this.authError = false
+    },
+    (error : HttpErrorResponse )=>{
+      console.log(error);
+     this.authError = true;
+     if(error.status !==400){
+       this.authMessage = 'Error in the Server, Please try again later';
+     }
+    })
   }
 }
