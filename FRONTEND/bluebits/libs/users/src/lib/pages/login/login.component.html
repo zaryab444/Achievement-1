@@ -8,8 +8,8 @@
         <h3>Welcome!</h3>
         <h2>Login Page</h2>
         <form [formGroup]="loginFormGroup">
-          <div class="p-grid p-mt-6">
-            <div class="p-col-12">
+          <div class="grid mt-6">
+            <div class="col-12">
               <div class="p-inputgroup">
                 <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
                 <input type="text" formControlName="email" pInputText placeholder="Email" />
@@ -19,7 +19,7 @@
                 <span *ngIf="loginForm.email.errors.email">email is invalid</span></small
               >
             </div>
-            <div class="p-col-12">
+            <div class="col-12">
               <div class="p-inputgroup">
                 <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
                 <input
@@ -33,7 +33,7 @@
                 >Password is required
               </small>
             </div>
-            <div class="p-col-12">
+            <div class="col-12">
               <p-button label="Submit" styleClass="full-btn" (onClick)="onSubmit()"></p-button>
             </div>
 
