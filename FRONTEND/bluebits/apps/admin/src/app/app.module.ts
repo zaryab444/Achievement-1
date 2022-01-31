@@ -26,7 +26,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import { TagModule } from 'primeng/tag';
 import {FieldsetModule} from 'primeng/fieldset';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MessageService } from 'primeng/api';
@@ -40,7 +40,7 @@ import { UsersListComponent } from './pages/users/users-list/users-list.componen
 import { UsersFormComponent } from './pages/users/users-form/users-form.component';
 import { OrdersDetailComponent } from './pages/orders/orders-detail/orders-detail.component';
 import { OrdersListComponent } from './pages/orders/orders-list/orders-list.component';
-import { AuthGuard, UserModule } from '@bluebits/users';
+import { AuthGuard, JwtInterceptor, UserModule } from '@bluebits/users';
 
 
 
@@ -137,7 +137,7 @@ const routes: Routes = [
     UserModule,
     RouterModule.forRoot(routes),
   ],
-  providers: [MessageService, ConfirmationService ],
+  providers: [MessageService, ConfirmationService, {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor,multi: true}   ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
