@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User, UsersService } from '@bluebits/users';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'bluebits-users-list',
@@ -10,6 +11,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 })
 export class UsersListComponent implements OnInit {
   users: User [] = [];
+  endsubs$ : Subject<any> = new Subject();
 
   constructor(
     private usersService: UsersService,
@@ -21,6 +23,12 @@ export class UsersListComponent implements OnInit {
   ngOnInit(): void {
     this._getUsers();
   }
+
+  ngOnDestroy() {
+    this.endsubs$.next;
+    this.endsubs$.complete();
+}
+
 
 deleteUser(userId: string){
   this.confirmationService.confirm({
@@ -59,8 +67,9 @@ updateUser(userid: string){
   this.router.navigateByUrl(`users/form/${userid}`);
 }
 
+// we use take utils observable pipe this is better then unsubscribe also the pipe filter the data and destroy this subscription when endsubs variable is complete
 private _getUsers(){
-  this.usersService.getUsers().subscribe((users)=>{
+  this.usersService.getUsers().pipe(takeUntil(this.endsubs$)).subscribe((users)=>{
     this.users = users;
   })
 }

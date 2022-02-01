@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '@bluebits/product';
 import { UsersService } from '@bluebits/users';
-import { combineLatest } from 'rxjs';
+import { combineLatest, Subject, takeUntil } from 'rxjs';
 import {  OrderService } from '@bluebits/orders';
 @Component({
   selector: 'admin-dashboard',
@@ -10,6 +10,7 @@ import {  OrderService } from '@bluebits/orders';
 })
 export class DashboardComponent implements OnInit {
   statistics = [];
+  endsubs$ : Subject<any> = new Subject();
   constructor(
 
     private userService: UsersService,
@@ -18,15 +19,22 @@ export class DashboardComponent implements OnInit {
 
   ) { }
 
+
+  // we use take utils observable pipe this is better then unsubscribe also the pipe filter the data and destroy this subscription when endsubs variable is complete
   ngOnInit(): void {
     combineLatest([
        this.ordersService.getOrdersCount(),
       this.productService.getProductsCount(),
      // this.userService.getUsersCount(),
       this.ordersService.getTotalSales()
-    ]).subscribe((values) => {
+    ]).pipe(takeUntil(this.endsubs$)).subscribe((values) => {
       this.statistics = values;
     });
   }
+  ngOnDestroy() {
+    this.endsubs$.next;
+    this.endsubs$.complete();
+}
+
 
 }

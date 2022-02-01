@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {CategoriesService, Category} from '@bluebits/product';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { Subject, takeUntil } from 'rxjs';
 @Component({
   selector: 'admin-categories-list',
   templateUrl: './categories-list.component.html',
   styleUrls: ['./categories-list.component.scss']
 })
-export class CategoriesListComponent implements OnInit {
+export class CategoriesListComponent implements OnInit, OnDestroy {
 
   categories: Category[] = [];
-
+    endsubs$ : Subject<any> = new Subject();
   constructor(
     private confirmationService: ConfirmationService,
     private categoriesService: CategoriesService,
@@ -20,8 +21,16 @@ export class CategoriesListComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-   this._getCategories()
+   this._getCategories();
+
   }
+
+
+
+  ngOnDestroy() {
+    this.endsubs$.next;
+    this.endsubs$.complete();
+}
 
 
 
@@ -57,8 +66,9 @@ updateCategory(categoryId :string){
 
 
 
+// we use take utils observable pipe this is better then unsubscribe also the pipe filter the data and destroy this subscription when endsubs variable is complete
 private _getCategories(){
-  this.categoriesService.getCategories().subscribe(cats => {
+  this.categoriesService.getCategories().pipe(takeUntil(this.endsubs$)).subscribe(cats => {
     this.categories = cats;
   });
 }

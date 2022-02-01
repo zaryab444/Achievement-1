@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { Order, OrderService } from '@bluebits/orders';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { Subject, takeUntil } from 'rxjs';
 import { ORDER_STATUS } from './order.constant';
 
 
@@ -19,6 +20,7 @@ export class OrdersListComponent implements OnInit {
 
    orders :Order[] = [];
    orderStatus = ORDER_STATUS;
+   endsubs$ : Subject<any> = new Subject();
   constructor(
     private orderService : OrderService,
     private confirmationService: ConfirmationService,
@@ -31,8 +33,14 @@ export class OrdersListComponent implements OnInit {
     this._getOrders();
   }
 
+  ngOnDestroy() {
+    this.endsubs$.next;
+    this.endsubs$.complete();
+}
+
+// we use take utils observable pipe this is better then unsubscribe also the pipe filter the data and destroy this subscription when endsubs variable is complete
    _getOrders(){
-    this.orderService.getOrders().subscribe(data =>{
+    this.orderService.getOrders().pipe(takeUntil(this.endsubs$)).subscribe(data =>{
       this.orders = data;
     })
   }
