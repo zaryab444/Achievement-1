@@ -1,10 +1,11 @@
 //make sure you import the file in order wise
 
 //Base
+@import '~normalize.css/normalize.css';
 @import './base/colors.scss';
 @import './base/fonts.scss';
 @import './base/mixin.scss';
-@import './base/configuration.scss';
+
 
 //Libraries we use primeng libraries
 @import '~primeicons/primeicons.css';
@@ -12,6 +13,7 @@
 @import '~primeng/resources/primeng.min.css';
 
 @import '~primeflex/primeflex.css';
+@import './base/configuration.scss';
 
 //Pages
 @import './apps/shop/pages/home-page.scss';
@@ -23,3 +25,11 @@
 
 //libs
 @import './libs/ui/ui.scss';
+
+
+.container{
+  width: 1370px;
+  padding: 15px;
+  margin: 0 auto;
+  background-color: lightgray;
+}
