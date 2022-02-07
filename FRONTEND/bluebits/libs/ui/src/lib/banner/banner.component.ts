@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'bluebits-banner',
+  selector: 'ui-banner',
   templateUrl: './banner.component.html',
   styleUrls: ['./banner.component.scss']
 })
