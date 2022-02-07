@@ -26,6 +26,8 @@ nx g component pages/product-list --project=ngshop
 nx g component pages/users/users-list --project=admin
 nx g component pagees/orders/orders-list --project=admin
 
+
+
 create shared library
 npx nx g @nrwl/workspace:lib ui
 npx nx g @nrwl/workspace:lib orders

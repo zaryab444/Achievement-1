@@ -12,6 +12,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { UiModule } from '@bluebits/ui';
 import {AccordionModule} from 'primeng/accordion';
 import { NavComponent } from './shared/nav/nav.component';
+import { ProductModule } from '@bluebits/product';
 
 
 const routes :Routes =[
@@ -24,9 +25,11 @@ const routes :Routes =[
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    ProductModule,
     RouterModule.forRoot(routes),
     UiModule,
-    AccordionModule
+    AccordionModule,
+
 
     ],
   providers: [],
