@@ -13,6 +13,8 @@ import { UiModule } from '@bluebits/ui';
 import {AccordionModule} from 'primeng/accordion';
 import { NavComponent } from './shared/nav/nav.component';
 import { ProductModule } from '@bluebits/product';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 const routes :Routes =[
@@ -20,15 +22,17 @@ const routes :Routes =[
   {path:'products',component:ProductListComponent}
 ]
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent, HomePageComponent, ProductListComponent, HeaderComponent, FooterComponent, NavComponent],
+  declarations: [AppComponent, NxWelcomeComponent, HomePageComponent, ProductListComponent, HeaderComponent, FooterComponent, NavComponent, ],
 
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     ProductModule,
+    HttpClientModule,
     RouterModule.forRoot(routes),
     UiModule,
     AccordionModule,
+
 
 
     ],
