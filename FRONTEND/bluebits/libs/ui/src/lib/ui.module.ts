@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import { BannerComponent } from './banner/banner.component';
 import { SliderComponent } from './slider/slider.component';
-import {ButtonModule} from 'primeng/button';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   imports: [
@@ -12,7 +12,8 @@ import {ButtonModule} from 'primeng/button';
   declarations: [
     BannerComponent,
     SliderComponent ],
-    exports:[ BannerComponent,
+    exports:[
+      BannerComponent,
       SliderComponent]
 })
 
