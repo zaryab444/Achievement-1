@@ -2,10 +2,17 @@
   <div class="grid">
     <div class="col-3">
    <h4>Categories</h4>
-   <div class="field-checkbox" *ngFor="let category of categories">
-    <p-checkbox [(ngModel)]="checked" binary="true" [inputId]="category.id"></p-checkbox>
-    <label for="{{category.id}}">{{category.name}}</label>
+
+<div class="field-checkbox" *ngFor="let category of categories">
+  <p-checkbox
+    [(ngModel)]="category.checked"
+    binary="true"
+    [inputId]="category.id"
+    (onChange)="categoryFilter()"
+  ></p-checkbox>
+  <label for="{{ category.id }}">{{ category.name }}</label>
 </div>
+
     </div>
     <div class="col-9">
      <div class="grid" *ngIf="products">

@@ -17,6 +17,7 @@ import {CheckboxModule} from 'primeng/checkbox';
 import { ProductModule } from '@bluebits/product';
 import { HttpClientModule } from '@angular/common/http';
 import { ordersModule } from '@bluebits/orders';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -36,7 +37,8 @@ const routes :Routes =[
     UiModule,
     AccordionModule,
     ordersModule,
-    CheckboxModule
+    CheckboxModule,
+    FormsModule
 
 
 

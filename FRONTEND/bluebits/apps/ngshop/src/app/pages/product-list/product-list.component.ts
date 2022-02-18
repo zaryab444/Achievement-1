@@ -20,8 +20,8 @@ export class ProductListComponent implements OnInit {
 
   }
 
-  private _getProducts(){
-    this.prodService.getProducts().subscribe((res)=>{
+  private _getProducts(categoriesFilter?: string[]){
+    this.prodService.getProducts(categoriesFilter).subscribe((res)=>{
       this.products = res;
     })
   }
@@ -31,4 +31,16 @@ export class ProductListComponent implements OnInit {
       this.categories = res;
     })
   }
+
+  categoryFilter(){
+
+    //filter the array to show selected categries
+
+    //map the filter array to show only category id in array
+     const selectedCategories = this.categories.filter((category) => category.checked).map(category => category.id);
+     this._getProducts(selectedCategories)
+    console.log(selectedCategories)
+  }
+
+
 }
