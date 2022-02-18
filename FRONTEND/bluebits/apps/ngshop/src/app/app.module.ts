@@ -12,6 +12,8 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { UiModule } from '@bluebits/ui';
 import {AccordionModule} from 'primeng/accordion';
 import { NavComponent } from './shared/nav/nav.component';
+import {CheckboxModule} from 'primeng/checkbox';
+
 import { ProductModule } from '@bluebits/product';
 import { HttpClientModule } from '@angular/common/http';
 import { ordersModule } from '@bluebits/orders';
@@ -33,7 +35,9 @@ const routes :Routes =[
     RouterModule.forRoot(routes),
     UiModule,
     AccordionModule,
-    ordersModule
+    ordersModule,
+    CheckboxModule
+
 
 
     ],
