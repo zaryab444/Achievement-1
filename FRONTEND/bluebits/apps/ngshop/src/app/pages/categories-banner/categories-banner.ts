@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
+import { CategoriesService, Category } from "@bluebits/product";
 import { Subject, take, takeUntil } from "rxjs";
-import { Category } from "../../models/category";
-import { CategoriesService } from "../../services/categories.service";
+// import { Category } from "../../models/category";
+// import { CategoriesService } from "../../services/categories.service";
 
 @Component({
   selector: 'products-categories-banner',

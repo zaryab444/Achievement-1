@@ -18,15 +18,24 @@ import { ProductModule } from '@bluebits/product';
 import { HttpClientModule } from '@angular/common/http';
 import { ordersModule } from '@bluebits/orders';
 import { FormsModule } from '@angular/forms';
+import { CategoriesBannerComponent } from './pages/categories-banner/categories-banner';
 
 
 
 const routes :Routes =[
   {path:'', component: HomePageComponent},
-  {path:'products',component:ProductListComponent}
+  {path:'products',component:ProductListComponent},
+  {
+    path: 'category/:categoryid',
+    component: ProductListComponent
+  },
+  // {
+  //   path: 'products/:productid',
+  //   component: ProductPageComponent
+  // }
 ]
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent, HomePageComponent, ProductListComponent, HeaderComponent, FooterComponent, NavComponent, ],
+  declarations: [AppComponent, NxWelcomeComponent, HomePageComponent, ProductListComponent, HeaderComponent, FooterComponent, NavComponent,  CategoriesBannerComponent ],
 
   imports: [
     BrowserModule,
