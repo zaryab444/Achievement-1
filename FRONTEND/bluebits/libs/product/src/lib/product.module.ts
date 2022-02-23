@@ -10,6 +10,7 @@ import { ProductPageComponent } from './component/product-page/product-page.comp
 import {RatingModule} from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
 import {InputNumberModule} from 'primeng/inputnumber';
+import { UiModule } from '@bluebits/ui';
 
 const routes : Routes = [
   {
@@ -28,6 +29,7 @@ const routes : Routes = [
     FormsModule,
     InputNumberModule,
     RouterModule.forChild(routes),
+    UiModule
 
   ],
   declarations: [
