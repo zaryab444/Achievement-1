@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./gallery.component.scss']
 })
 export class GalleryComponent implements OnInit {
-  selectedImage : string;
+  selectedImageUrl : string;
 
   //array of string because we have multiple paths
   @Input() images: string[];
@@ -15,9 +15,20 @@ export class GalleryComponent implements OnInit {
   ngOnInit(): void {
 
     //this condtion will show first main image
-    if(this.images.length){
-    this.selectedImage = this.images[0]
+    if(this.hasImages){
+    this.selectedImageUrl = this.images[0]
     }
   }
+
+  //this method is click to select different image
+  changeSelectedImage(imageUrl: string){
+    this.selectedImageUrl = imageUrl
+  }
+
+  get hasImages(){
+    //if no images has found
+    return this.images?.length > 0;
+  }
+
 
 }
