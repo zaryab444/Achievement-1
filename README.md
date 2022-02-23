@@ -47,6 +47,8 @@ https://stackblitz.com/edit/ngx-image-editor-demo?file=src%2Fapp%2Fapp.module.ts
 
 https://www.npmjs.com/package/ngx-image-editor
 
+//multiple image upload
+https://www.bezkoder.com/angular-12-multiple-image-upload-preview/
 
 2 shiped
 1 pending
