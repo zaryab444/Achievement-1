@@ -19,7 +19,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ordersModule } from '@bluebits/orders';
 import { FormsModule } from '@angular/forms';
 import { CategoriesBannerComponent } from './pages/categories-banner/categories-banner';
-
+import { MessagesComponent } from './shared/messages/messages.component';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 
 const routes :Routes =[
@@ -35,7 +37,7 @@ const routes :Routes =[
   // }
 ]
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent, HomePageComponent, ProductListComponent, HeaderComponent, FooterComponent, NavComponent,  CategoriesBannerComponent ],
+  declarations: [AppComponent, NxWelcomeComponent, HomePageComponent, ProductListComponent, HeaderComponent, FooterComponent, NavComponent,  CategoriesBannerComponent, MessagesComponent ],
 
   imports: [
     BrowserModule,
@@ -47,12 +49,13 @@ const routes :Routes =[
     AccordionModule,
     ordersModule,
     CheckboxModule,
-    FormsModule
+    FormsModule,
+    ToastModule
 
 
 
     ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

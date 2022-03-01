@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { MessageService } from "primeng/api";
 import { BehaviorSubject } from "rxjs";
 import { Cart, CartItem } from "../models/cart";
 
@@ -51,6 +52,7 @@ getCart() : Cart {
             return item;
           }
         })
+
     }
     else{
       cart.items.push(cartItem);
