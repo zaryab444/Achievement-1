@@ -21,9 +21,15 @@
     <div class="product-quantity">
       <div class="field col-12 md:col-3 p-0">
         <label for="quantity">Quantity</label>
-        <p-inputNumber [(ngModel)]="quantity"
+        <p-inputNumber
+        [(ngModel)]="quantity"
         [showButtons]="true"
-        inputId="quantity" inputId="quantity" mode="decimal" [min]="0" [max]="100">
+        inputId="quantity"
+        inputId="quantity"
+         mode="decimal"
+          [min]="1"
+          [max]="100"
+          >
         </p-inputNumber>
     </div>
 
@@ -42,7 +48,7 @@
       type="button"
       label = "Add to cart"
       class="p-button-rounded"
-      (onclick)="addProductToCart()"
+      (click)="addProductToCart()"
       ></button>
     </div>
 
