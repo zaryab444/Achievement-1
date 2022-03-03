@@ -30,10 +30,32 @@
           {{250 | currency}}
         </div>
         <div class="cart-item-remove">
-          <p-button icon="pi pi-trash" (onClick)="deleteCartItem()"></p-button>
+          <p-button icon="pi pi-trash" (onClick)="deleteCartItem()">
+
+          </p-button>
         </div>
       </div>
 
+      <div class="col-3">
+        <div class="product-quantity">
+          <div class="field cart-item-quantity">
+            <p-inputNumber
+           [showButtons]="true"
+            inputId="quantity"
+             mode="decimal"
+              [min]="1"
+              [max]="100"
+              >
+            </p-inputNumber>
+        </div>
+
+        <div class="cart-item-subtotal">
+          Subtotal:
+          <span class="cart-item-subtotal-value">{{200 | currency}}</span>
+        </div>
+
+        </div>
+     </div>
 
     </div>
       </div>

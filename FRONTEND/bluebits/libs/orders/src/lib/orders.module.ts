@@ -6,6 +6,7 @@ import { CartIconComponent } from './components/cart-icon/cart-icon.component';
 import {BadgeModule} from 'primeng/badge';
 import { OrderCartPageComponent } from './components/cart-page/orders-cart-page.component';
 import {ButtonModule} from 'primeng/button';
+import {InputNumberModule} from 'primeng/inputnumber';
 
 export const usersRoutes: Route[]=[];
 
@@ -22,6 +23,7 @@ const routes : Routes =[
     RouterModule,
     BadgeModule,
     ButtonModule,
+    InputNumberModule,
     RouterModule.forChild(routes)
   ],
     declarations: [
