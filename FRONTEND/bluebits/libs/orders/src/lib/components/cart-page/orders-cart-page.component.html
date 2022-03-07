@@ -1,5 +1,5 @@
 <div class="cart-page">
-  <div class="p-grid">
+  <div class="grid">
     <div class="col-8">
       <div>
         <p-button
@@ -10,15 +10,15 @@
       </div>
       <div>
         <h4>
-          My Cart: {{2}} Item(s)
+          My Cart: {{cartCount}} Item(s)
         </h4>
 
       </div>
       <div class="cart-shipping mb-5">
    Shipping after the payment, Delivery time : 1 to 4 working days
       </div>
-      <div class="cart-item mb-5"  *ngFor="let cartItem of cartItemsDetailed">
-    <div class="p-grid">
+      <div class="cart-item mb-5 "  *ngFor="let cartItem of cartItemsDetailed">
+    <div class="grid p-fluid">
       <div class="col-2 cart-item-image">
         <img [src]="cartItem.product.image"
 
@@ -32,7 +32,7 @@
           {{cartItem.product.price | currency}}
         </div>
         <div class="cart-item-remove">
-          <p-button icon="pi pi-trash" (onClick)="deleteCartItem()">
+          <p-button icon="pi pi-trash" (onClick)="deleteCartItem(cartItem)">
 
           </p-button>
         </div>
@@ -40,7 +40,7 @@
 
       <div class="col-3">
         <div class="product-quantity">
-          <div class="field cart-item-quantity">
+          <div class="field cart-item-quantity ">
             <p-inputNumber
            [showButtons]="true"
             [inputId]="cartItem.product.id"

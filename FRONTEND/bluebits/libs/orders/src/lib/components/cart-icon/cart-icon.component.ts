@@ -18,7 +18,7 @@ export class CartIconComponent implements OnInit {
          //get the current cart which is loaded in application
          console.log(cart);
            //two questionmark to avoid error is is null to provide zero
-      this.cartCount = cart?.items.length ?? 0;
+      this.cartCount = cart?.items?.length ?? 0;
     })
 
 

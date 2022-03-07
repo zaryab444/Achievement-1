@@ -1,6 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ProductsService } from "@bluebits/product";
+import { Subject, takeUntil } from "rxjs";
 import { cartItemDetailed } from "../../models/cart";
 import { CartService } from "../../services/cart.service";
 
@@ -9,9 +10,11 @@ import { CartService } from "../../services/cart.service";
   templateUrl: './orders-cart-page.component.html',
   styleUrls: ['./orders-cart-page.component.scss']
 })
-export class OrderCartPageComponent implements OnInit {
+export class OrderCartPageComponent implements OnInit, OnDestroy {
 
-  cartItemsDetailed : cartItemDetailed[] = []
+  cartItemsDetailed : cartItemDetailed[] = [];
+  cartCount = 0;
+  endsubs$ : Subject<any> = new Subject();
 
   constructor(private router: Router, private cartService: CartService, private productService : ProductsService) { }
 
@@ -19,8 +22,14 @@ export class OrderCartPageComponent implements OnInit {
     this._getCartDetails();
   }
 
+  ngOnDestroy(){
+    this.endsubs$.next;
+    this.endsubs$.complete();
+  }
   private _getCartDetails(){
-    this.cartService.cart$.pipe().subscribe((respCart)=>{
+    this.cartService.cart$.pipe(takeUntil(this.endsubs$)).subscribe((respCart)=>{
+      this.cartItemsDetailed =[];
+      this.cartCount = respCart?.items.length ?? 0;
       respCart.items.forEach((cartItem)=>{
         this.productService.getProduct(cartItem.productId).subscribe(respProduct =>{
           console.log(respProduct)
@@ -37,7 +46,7 @@ export class OrderCartPageComponent implements OnInit {
      this.router.navigate(['/products']);
   }
 
-  deleteCartItem(){
-
+  deleteCartItem(cartItem : cartItemDetailed){
+   this.cartService.deleteCartItem(cartItem.product.id)
   }
 }
