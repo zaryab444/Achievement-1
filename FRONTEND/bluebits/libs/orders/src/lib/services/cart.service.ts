@@ -40,7 +40,7 @@ getCart() : Cart {
 }
 
 
-   setCartItem(cartItem: CartItem): Cart {
+   setCartItem(cartItem: CartItem, updateCartItem?:boolean): Cart {
     const cart = this.getCart();
 
     //check if the product id is same in cart item then increase the quantity
@@ -48,7 +48,16 @@ getCart() : Cart {
     if(cartItemExist){
         cart.items.map(item =>{
           if(item.productId === cartItem.productId){
+
+            //if user click quantity in cart page
+            if(updateCartItem){
+              item.quantity =cartItem.quantity;
+            }
+            else{
+
+
             item.quantity = item.quantity + cartItem.quantity;
+            }
             return item;
           }
         })

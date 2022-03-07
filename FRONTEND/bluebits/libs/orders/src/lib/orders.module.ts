@@ -8,6 +8,7 @@ import { OrderCartPageComponent } from './components/cart-page/orders-cart-page.
 import {ButtonModule} from 'primeng/button';
 import {InputNumberModule} from 'primeng/inputnumber';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
+import { FormsModule } from '@angular/forms';
 
 export const usersRoutes: Route[]=[];
 
@@ -25,6 +26,8 @@ const routes : Routes =[
     BadgeModule,
     ButtonModule,
     InputNumberModule,
+    FormsModule,
+
     RouterModule.forChild(routes)
   ],
     declarations: [
