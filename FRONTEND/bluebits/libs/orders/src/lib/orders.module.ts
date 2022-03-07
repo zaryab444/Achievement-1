@@ -8,7 +8,10 @@ import { OrderCartPageComponent } from './components/cart-page/orders-cart-page.
 import {ButtonModule} from 'primeng/button';
 import {InputNumberModule} from 'primeng/inputnumber';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CheckoutPageComponent } from './components/checkout-page/checkout-page.component';
+import {DropdownModule} from 'primeng/dropdown';
+import {InputMaskModule} from 'primeng/inputmask';
 
 export const usersRoutes: Route[]=[];
 
@@ -17,6 +20,10 @@ const routes : Routes =[
   {
     path:'cart',
     component:OrderCartPageComponent
+  },
+  {
+    path:'checkout',
+    component:CheckoutPageComponent
   }
 ]
 @NgModule({
@@ -25,15 +32,19 @@ const routes : Routes =[
     RouterModule,
     BadgeModule,
     ButtonModule,
+    DropdownModule,
     InputNumberModule,
     FormsModule,
+    InputMaskModule,
+    ReactiveFormsModule,
 
     RouterModule.forChild(routes)
   ],
     declarations: [
       CartIconComponent,
       OrderCartPageComponent,
-      OrderSummaryComponent
+      OrderSummaryComponent,
+      CheckoutPageComponent
 
     ],
     exports:[
