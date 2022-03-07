@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import { map, Observable } from "rxjs";
 import {environment} from '@env/environment';
 import { Order } from "../models/orders";
+import { Product } from "@bluebits/product";
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ import { Order } from "../models/orders";
 
 export class OrderService {
   apiURLOrders = environment.apiURL + 'orders';
+  apiURLProducts = environment.apiURL + 'products';
   constructor(private http: HttpClient) {}
 
 
@@ -45,5 +47,8 @@ export class OrderService {
       .pipe(map((objectValue: any) => objectValue.totalsales));
   }
 
+  getProduct(productId: string): Observable  <Product>{
+    return this.http.get<Product>(`${this.apiURLProducts}/${productId}` )
+  }
 
 }
