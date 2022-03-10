@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Order, OrderService } from '@bluebits/orders';
+import { Order, OrderService , ORDER_STATUS, ORDER_STATUSes} from '@bluebits/orders';
 import { MessageService } from 'primeng/api';
-import { ORDER_STATUS, ORDER_STATUSes } from '../orders-list/order.constant';
+// import { , ORDER_STATUSes } from '../orders-list/order.constant';
 
 
 @Component({
-  selector: 'bluebits-orders-detail',
+  selector: 'admin-orders-detail',
   templateUrl: './orders-detail.component.html',
   styleUrls: ['./orders-detail.component.scss']
 })

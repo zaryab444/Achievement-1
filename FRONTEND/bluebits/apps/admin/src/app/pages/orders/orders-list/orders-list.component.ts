@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { Order, OrderService } from '@bluebits/orders';
+import { Order, OrderService,ORDER_STATUS } from '@bluebits/orders';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Subject, takeUntil } from 'rxjs';
-import { ORDER_STATUS } from './order.constant';
+
 
 
 
