@@ -28,8 +28,17 @@ export class CartService {
      localStorage.setItem(CART_KEY, initialCartJson)
   }
 
+  }
 
+  emptyCart(){
+    const initialCart ={
+      items:[]
+    };
+    const initialCartJson = JSON.stringify(initialCart);
+    localStorage.setItem(CART_KEY, initialCartJson);
 
+    //so this remove cart observing when user place order 
+    this.cart$.next(initialCart)
   }
 
 

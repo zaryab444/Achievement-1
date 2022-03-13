@@ -91,9 +91,19 @@ console.log(this.orderItems);
      dateOrdered:`${Date.now()}`
     };
     this.orderService.createOrder(order).subscribe(()=>{
-      //redirect to thank you page
-      console.log("Successfully place order")
-    })
+
+        //after success fully place order we clear the cart in localstorage also
+      this.cartService.emptyCart();
+
+   
+    this.router.navigate(['/success']);
+
+    
+
+    },
+    ()=>{
+      //display some error message to user
+    });
   }
 
   get checkoutForm() {

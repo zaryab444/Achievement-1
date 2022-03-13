@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CheckoutPageComponent } from './components/checkout-page/checkout-page.component';
 import {DropdownModule} from 'primeng/dropdown';
 import {InputMaskModule} from 'primeng/inputmask';
+import { ThankyouPageComponent } from './components/thankyou-page/thankyou-page.component';
 
 export const usersRoutes: Route[]=[];
 
@@ -24,6 +25,10 @@ const routes : Routes =[
   {
     path:'checkout',
     component:CheckoutPageComponent
+  },
+  {
+    path:'success',
+    component: ThankyouPageComponent
   }
 ]
 @NgModule({
@@ -44,7 +49,8 @@ const routes : Routes =[
       CartIconComponent,
       OrderCartPageComponent,
       OrderSummaryComponent,
-      CheckoutPageComponent
+      CheckoutPageComponent,
+      ThankyouPageComponent
 
     ],
     exports:[
