@@ -36,6 +36,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   private _getProduct(id: string){
       this.prodService.getProduct(id).pipe(takeUntil(this.endSubs$)).subscribe(res =>{
         this.product = res;
+        console.log(this.product);
       })
   }
   addProductToCart(){

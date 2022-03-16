@@ -22,6 +22,7 @@ import { CategoriesBannerComponent } from './pages/categories-banner/categories-
 import { MessagesComponent } from './shared/messages/messages.component';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { UserModule } from '@bluebits/users';
 
 
 const routes :Routes =[
@@ -50,7 +51,8 @@ const routes :Routes =[
     ordersModule,
     CheckboxModule,
     FormsModule,
-    ToastModule
+    ToastModule,
+    UserModule
 
 
 
