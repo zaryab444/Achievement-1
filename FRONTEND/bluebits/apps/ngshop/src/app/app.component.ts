@@ -1,10 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { UsersService } from '@bluebits/users';
 
 @Component({
-  selector: 'bluebits-root',
+  selector: 'ngshop-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
+  constructor(private userService: UsersService){
+
+  }
+
+  ngOnInit() {
+      this.userService.initAppSession();
+  }
   title = 'ngshop';
 }

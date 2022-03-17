@@ -23,6 +23,8 @@ import { MessagesComponent } from './shared/messages/messages.component';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { UserModule } from '@bluebits/users';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 
 const routes :Routes =[
@@ -45,6 +47,8 @@ const routes :Routes =[
     BrowserAnimationsModule,
     ProductModule,
     HttpClientModule,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
     RouterModule.forRoot(routes),
     UiModule,
     AccordionModule,

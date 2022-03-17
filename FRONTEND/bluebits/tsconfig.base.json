@@ -19,8 +19,7 @@
       "@bluebits/product": ["libs/product/src/index.ts"],
       "@bluebits/ui": ["libs/ui/src/index.ts"],
       "@bluebits/users": ["libs/users/src/index.ts"],
-        //we use star because we have more then one file
-      "@env/*" : ["environments/*"]
+      "@env/*": ["environments/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

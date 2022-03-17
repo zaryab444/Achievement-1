@@ -58,3 +58,7 @@ https://www.bezkoder.com/angular-12-multiple-image-upload-preview/
 
 //prime flex website
 https://www.primefaces.org/primeflex/gridsystem
+
+nx console vscode extension
+
+https://www.intertech.com/ngrx-tutorial-quickly-adding-ngrx-to-your-angular-6-project/
