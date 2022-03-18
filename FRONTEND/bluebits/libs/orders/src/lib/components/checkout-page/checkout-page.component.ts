@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from '@bluebits/users';
+import { take } from 'rxjs';
 import { Cart } from '../../models/cart';
 import { OrderItem } from '../../models/order-item';
 import { Order } from '../../models/orders';
@@ -31,6 +32,7 @@ export class CheckoutPageComponent implements OnInit {
 
   ngOnInit(): void {
     this._initCheckoutForm();
+    this._autoFillUserData();
     this._getCartItems();
     this._getCountries();
   }
@@ -108,5 +110,24 @@ console.log(this.orderItems);
 
   get checkoutForm() {
     return this.checkoutFormGroup.controls;
+  }
+
+  private _autoFillUserData(){
+    this.usersService.observeCurrentUser().pipe(take(1)).subscribe((user)=>{
+      
+      if(user){
+      this.checkoutForm.name.setValue(user.name);
+       this.checkoutForm.email.setValue(user.email);
+        this.checkoutForm.phone.setValue(user.phone);
+         this.checkoutForm.city.setValue(user.city);
+          this.checkoutForm.country.setValue(user.country);
+           this.checkoutForm.zip.setValue(user.zip);
+            this.checkoutForm.apartment.setValue(user.apartment);
+             this.checkoutForm.street.setValue(user.street);
+      
+    
+    }
+
+    })
   }
 }

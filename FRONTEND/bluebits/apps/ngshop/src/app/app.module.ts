@@ -15,14 +15,14 @@ import { NavComponent } from './shared/nav/nav.component';
 import {CheckboxModule} from 'primeng/checkbox';
 
 import { ProductModule } from '@bluebits/product';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ordersModule } from '@bluebits/orders';
 import { FormsModule } from '@angular/forms';
 import { CategoriesBannerComponent } from './pages/categories-banner/categories-banner';
 import { MessagesComponent } from './shared/messages/messages.component';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-import { UserModule } from '@bluebits/users';
+import { JwtInterceptor, UserModule } from '@bluebits/users';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
@@ -61,7 +61,8 @@ const routes :Routes =[
 
 
     ],
-  providers: [MessageService],
+  providers: [MessageService,
+  {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
