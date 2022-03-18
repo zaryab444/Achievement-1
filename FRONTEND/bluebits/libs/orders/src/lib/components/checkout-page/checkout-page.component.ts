@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from '@bluebits/users';
-import { take } from 'rxjs';
+import { Subject, take, takeUntil } from 'rxjs';
 import { Cart } from '../../models/cart';
 import { OrderItem } from '../../models/order-item';
 import { Order } from '../../models/orders';
@@ -15,7 +15,7 @@ import { OrderService } from '../../services/orders.service';
   templateUrl: './checkout-page.component.html',
   styleUrls: ['./checkout-page.component.scss']
 })
-export class CheckoutPageComponent implements OnInit {
+export class CheckoutPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
@@ -27,14 +27,20 @@ export class CheckoutPageComponent implements OnInit {
   checkoutFormGroup: FormGroup;
   isSubmitted = false;
   orderItems: OrderItem[] = [];
-  userId = "6229de06945574328ba4505d";
+  userId: string;
   countries = [];
+  unsubscribe$ : Subject<any> = new Subject();
 
   ngOnInit(): void {
     this._initCheckoutForm();
     this._autoFillUserData();
     this._getCartItems();
     this._getCountries();
+  }
+  ngOnDestroy(){
+    this.unsubscribe$.next;
+    this.unsubscribe$.complete();
+
   }
 
   private _initCheckoutForm() {
@@ -113,9 +119,10 @@ console.log(this.orderItems);
   }
 
   private _autoFillUserData(){
-    this.usersService.observeCurrentUser().pipe(take(1)).subscribe((user)=>{
+    this.usersService.observeCurrentUser().pipe(takeUntil(this.unsubscribe$)).subscribe((user)=>{
       
       if(user){
+        this.userId = user.id;
       this.checkoutForm.name.setValue(user.name);
        this.checkoutForm.email.setValue(user.email);
         this.checkoutForm.phone.setValue(user.phone);

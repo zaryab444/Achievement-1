@@ -42,6 +42,8 @@ import { OrdersDetailComponent } from './pages/orders/orders-detail/orders-detai
 import { OrdersListComponent } from './pages/orders/orders-list/orders-list.component';
 import { AuthGuard, JwtInterceptor, UserModule } from '@bluebits/users';
 import { AppRoutingModule } from './app-routing.module';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 
 
@@ -58,6 +60,9 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
     FormsModule,
     ReactiveFormsModule,
     CardModule,
