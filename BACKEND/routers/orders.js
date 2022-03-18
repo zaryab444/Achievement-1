@@ -1,7 +1,9 @@
 const {Order} = require('../models/order');
+const {Product} = require('../models/product')
 const {OrderItem} = require('../models/order-item');
 const express = require('express');
 const router = express.Router();
+const stripe = require('stripe')('sk_test_51KeeRCHTZ2FrHXoyEfBItZ0CaF7C0TZ5Sr0fNxVhgVXO5BnWWmmsbgwKtpxITrgZ8AJjkWnBHx8FMXHltnl4zfV900I6rSdfwH');
 
 router.get('/', async (req, res) =>{
     //we use populate to check which user make an order
@@ -77,6 +79,37 @@ router.post('/', async(req,res) =>{
 
     res.send(order);
 
+})
+
+router.post('/create-checkout-session', async (req,res)=>{
+    const orderItem = req.body;
+    if(!orderItem){
+        return res.status(400).send('checkout session cannot be created-check the order items');
+    }
+
+    const lineItems = await Promise.all(
+        orderItem.map(async (orderItem)=>{
+            const product = await Product.findById(orderItem.product);
+            return{
+                price_data:{
+                    currency:'usd',
+                    product_data:{
+                        name: product.name,
+                    },
+                    unit_amount: product.price * 100
+                },
+                quantity: orderItem.quantity
+            };
+        })
+    )
+    const session = await stripe.checkout.session.create({
+        payment_method_types: ['card'],
+        line_items: lineItems,
+        mode: 'payment',
+        success_url: 'http://localhost:4200/success',
+        cancle_url : 'http://localhost:4200/error'
+    })
+    res.json({id: session.id});
 })
 
 

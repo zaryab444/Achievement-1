@@ -62,3 +62,5 @@ https://www.primefaces.org/primeflex/gridsystem
 nx console vscode extension
 
 https://www.intertech.com/ngrx-tutorial-quickly-adding-ngrx-to-your-angular-6-project/
+
+https://www.forbes.com/advisor/business/what-is-a-payment-gateway/
