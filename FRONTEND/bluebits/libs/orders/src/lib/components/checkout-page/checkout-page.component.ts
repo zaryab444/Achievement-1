@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from '@bluebits/users';
+import { StripeService } from 'ngx-stripe';
 import { Subject, take, takeUntil } from 'rxjs';
 import { Cart } from '../../models/cart';
 import { OrderItem } from '../../models/order-item';
@@ -23,6 +24,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private cartService : CartService,
     private orderService : OrderService
+   
   ) {}
   checkoutFormGroup: FormGroup;
   isSubmitted = false;
@@ -82,36 +84,44 @@ console.log(this.orderItems);
     if (this.checkoutFormGroup.invalid) {
       return;
     }
-
-    const order: Order = {
+   this.orderService.createCheckoutSession(this.orderItems).subscribe(error =>{
+     if(error){
+       console.log('error in redirect to payment');
+     }
+   });
+    //if you not use stripe so use this comment code or see above
+    // const order: Order = {
        
-      orderItems : this.orderItems,
-     shippingAddress1:this.checkoutForm.street.value,
-     shippingAddress2:this.checkoutForm.apartment.value,
-     city:this.checkoutForm.city.value,
-     zip:this.checkoutForm.zip.value,
-     country:this.checkoutForm.country.value,
-     phone:this.checkoutForm.phone.value,
+    //   orderItems : this.orderItems,
+    //  shippingAddress1:this.checkoutForm.street.value,
+    //  shippingAddress2:this.checkoutForm.apartment.value,
+    //  city:this.checkoutForm.city.value,
+    //  zip:this.checkoutForm.zip.value,
+    //  country:this.checkoutForm.country.value,
+    //  phone:this.checkoutForm.phone.value,
 
-     //pending
-     status: 0,
-     user:this.userId,
-     dateOrdered:`${Date.now()}`
-    };
-    this.orderService.createOrder(order).subscribe(()=>{
+    //  //pending
+    //  status: 0,
+    //  user:this.userId,
+    //  dateOrdered:`${Date.now()}`
+    // };
 
-        //after success fully place order we clear the cart in localstorage also
-      this.cartService.emptyCart();
+
+
+    // this.orderService.createOrder(order).subscribe(()=>{
+
+    //     //after success fully place order we clear the cart in localstorage also
+    //   this.cartService.emptyCart();
 
    
-    this.router.navigate(['/success']);
+    // this.router.navigate(['/success']);
 
     
 
-    },
-    ()=>{
-      //display some error message to user
-    });
+    // },
+    // ()=>{
+    //   //display some error message to user
+    // });
   }
 
   get checkoutForm() {

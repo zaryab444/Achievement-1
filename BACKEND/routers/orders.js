@@ -81,36 +81,37 @@ router.post('/', async(req,res) =>{
 
 })
 
-router.post('/create-checkout-session', async (req,res)=>{
-    const orderItem = req.body;
-    if(!orderItem){
-        return res.status(400).send('checkout session cannot be created-check the order items');
-    }
+router.post('/create-checkout-session', async (req, res) => {
+    const orderItems = req.body;
 
+    if (!orderItems) {
+        return res.status(400).send('checkout session cannot be created - check the order items');
+    }
     const lineItems = await Promise.all(
-        orderItem.map(async (orderItem)=>{
+        orderItems.map(async (orderItem) => {
             const product = await Product.findById(orderItem.product);
-            return{
-                price_data:{
-                    currency:'usd',
-                    product_data:{
-                        name: product.name,
+            return {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: product.name
                     },
                     unit_amount: product.price * 100
                 },
                 quantity: orderItem.quantity
             };
         })
-    )
-    const session = await stripe.checkout.session.create({
+    );
+    const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         line_items: lineItems,
         mode: 'payment',
         success_url: 'http://localhost:4200/success',
-        cancle_url : 'http://localhost:4200/error'
-    })
-    res.json({id: session.id});
-})
+        cancel_url: 'http://localhost:4200/error'
+    });
+
+    res.json({ id: session.id });
+});
 
 
 router.put('/:id', async(req,res)=>{

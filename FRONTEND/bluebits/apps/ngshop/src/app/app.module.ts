@@ -25,6 +25,7 @@ import { MessageService } from 'primeng/api';
 import { JwtInterceptor, UserModule } from '@bluebits/users';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { NgxStripeModule } from 'ngx-stripe';
 
 
 const routes :Routes =[
@@ -56,7 +57,8 @@ const routes :Routes =[
     CheckboxModule,
     FormsModule,
     ToastModule,
-    UserModule
+    UserModule,
+     NgxStripeModule.forRoot('pk_test_51KeeRCHTZ2FrHXoyhJ5ZvAIeMYiZEIstUNMR2WJ8knQYIQ6CGSA0XM3BU7GbjKjVEkgVh2xSBFqOMCWyYLKLL8vo00KSH3lDQz'),
 
 
 

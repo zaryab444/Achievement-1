@@ -1,10 +1,12 @@
 import { Injectable } from "@angular/core";
 import {HttpClient} from '@angular/common/http';
 //import { Category } from "../models/category";
-import { map, Observable } from "rxjs";
+import { map, Observable, switchMap } from "rxjs";
 import {environment} from '@env/environment';
 import { Order } from "../models/orders";
 import { Product } from "@bluebits/product";
+import { OrderItem } from "../models/order-item";
+import { StripeService } from "ngx-stripe";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,8 @@ import { Product } from "@bluebits/product";
 export class OrderService {
   apiURLOrders = environment.apiURL + 'orders';
   apiURLProducts = environment.apiURL + 'products';
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+    private stripeService: StripeService) {}
 
 
   getOrders(): Observable  <Order[]>{
@@ -51,4 +54,9 @@ export class OrderService {
     return this.http.get<Product>(`${this.apiURLProducts}/${productId}` )
   }
 
+  createCheckoutSession(orderItem:OrderItem[]){
+    return this.http.post(`${this.apiURLOrders}/create-checkout-session`, orderItem).pipe(switchMap((session:{id:string})=>{
+     return this.stripeService.redirectToCheckout({sessionId: session.id})
+    }));
+  }
 }
