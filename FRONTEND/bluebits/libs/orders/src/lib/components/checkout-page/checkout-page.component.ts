@@ -10,6 +10,7 @@ import { Order } from '../../models/orders';
 import { ORDER_STATUS } from '../../order.constant';
 import { CartService } from '../../services/cart.service';
 import { OrderService } from '../../services/orders.service';
+import { PaymentService } from '../../services/payment.service';
 
 @Component({
   selector: 'checkout-page',
@@ -23,7 +24,8 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     private usersService: UsersService,
     private formBuilder: FormBuilder,
     private cartService : CartService,
-    private orderService : OrderService
+    private paymentService : PaymentService,
+    private orderService: OrderService
    
   ) {}
   checkoutFormGroup: FormGroup;
@@ -84,44 +86,31 @@ console.log(this.orderItems);
     if (this.checkoutFormGroup.invalid) {
       return;
     }
-   this.orderService.createCheckoutSession(this.orderItems).subscribe(error =>{
+  
+    //if you not use stripe so use this comment code or see above
+    const order: Order = {
+       
+      orderItems : this.orderItems,
+     shippingAddress1:this.checkoutForm.street.value,
+     shippingAddress2:this.checkoutForm.apartment.value,
+     city:this.checkoutForm.city.value,
+     zip:this.checkoutForm.zip.value,
+     country:this.checkoutForm.country.value,
+     phone:this.checkoutForm.phone.value,
+
+     //pending
+     status: 0,
+     user:this.userId,
+     dateOrdered:`${Date.now()}`
+    };
+
+this.orderService.cacheOrderData(order);
+ this.paymentService.createCheckoutSession(this.orderItems).subscribe(error =>{
      if(error){
        console.log('error in redirect to payment');
      }
    });
-    //if you not use stripe so use this comment code or see above
-    // const order: Order = {
-       
-    //   orderItems : this.orderItems,
-    //  shippingAddress1:this.checkoutForm.street.value,
-    //  shippingAddress2:this.checkoutForm.apartment.value,
-    //  city:this.checkoutForm.city.value,
-    //  zip:this.checkoutForm.zip.value,
-    //  country:this.checkoutForm.country.value,
-    //  phone:this.checkoutForm.phone.value,
-
-    //  //pending
-    //  status: 0,
-    //  user:this.userId,
-    //  dateOrdered:`${Date.now()}`
-    // };
-
-
-
-    // this.orderService.createOrder(order).subscribe(()=>{
-
-    //     //after success fully place order we clear the cart in localstorage also
-    //   this.cartService.emptyCart();
-
-   
-    // this.router.navigate(['/success']);
-
-    
-
-    // },
-    // ()=>{
-    //   //display some error message to user
-    // });
+  
   }
 
   get checkoutForm() {

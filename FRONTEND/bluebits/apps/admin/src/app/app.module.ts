@@ -44,6 +44,7 @@ import { AuthGuard, JwtInterceptor, UserModule } from '@bluebits/users';
 import { AppRoutingModule } from './app-routing.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { NgxStripeModule } from 'ngx-stripe';
 
 
 
@@ -82,7 +83,8 @@ import { EffectsModule } from '@ngrx/effects';
     InputMaskModule,
     ConfirmDialogModule,
     UserModule,
-    AppRoutingModule
+    AppRoutingModule,
+        NgxStripeModule.forRoot('pk_test_51KeeRCHTZ2FrHXoyhJ5ZvAIeMYiZEIstUNMR2WJ8knQYIQ6CGSA0XM3BU7GbjKjVEkgVh2xSBFqOMCWyYLKLL8vo00KSH3lDQz'),
 
   ],
   providers: [MessageService, ConfirmationService, {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor,multi: true}   ],
