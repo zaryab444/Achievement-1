@@ -64,3 +64,10 @@ nx console vscode extension
 https://www.intertech.com/ngrx-tutorial-quickly-adding-ngrx-to-your-angular-6-project/
 
 https://www.forbes.com/advisor/business/what-is-a-payment-gateway/
+
+
+p123qwe#12345678zaryab   stripe password
+
+zaryabsohail444@gmail.com
+
+naua-vfbz-ozdk-ycbf-ayyc if we lost the mobile phone
