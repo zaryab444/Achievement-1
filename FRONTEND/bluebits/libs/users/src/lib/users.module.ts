@@ -33,6 +33,9 @@ const routes: Routes = [
     StoreModule.forFeature(fromUsers.USERS_FEATURE_KEY, fromUsers.reducer),
     EffectsModule.forFeature([UsersEffects]),
   ],
+  exports:[
+    LoginComponent
+  ],
   declarations: [LoginComponent],
   providers: [UsersFacade],
 })

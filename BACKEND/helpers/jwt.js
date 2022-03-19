@@ -12,6 +12,9 @@ function authJwt(){
             //this is except api using without token
         { url: /\/public\/uploads(.*)/, methods: ['GET', 'OPTIONS'] },
            {url:`${api}/products`, method:['GET', 'OPTION']},
+
+           //this line is except get product api without token
+          { url: /\/api\/v1\/products(.*)/, methods: ['GET', 'OPTIONS'] },
            {url: `${api}/products/get/count`,  method:['GET', 'OPTION']},
            {url: `${api}/categories`,  method:['GET', 'OPTION']},
            {url :`${api}/products/get/featured/:count`, method:['GET', 'OPTION']},
