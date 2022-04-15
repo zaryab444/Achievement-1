@@ -4,7 +4,7 @@ import {FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriesService, Category } from '@bluebits/product';
 import { MessageService } from 'primeng/api';
-import { timer } from 'rxjs';
+import { switchMap, timer } from 'rxjs';
 
 @Component({
   selector: 'admin-category-form',
@@ -40,21 +40,25 @@ export class CategoryFormComponent implements OnInit {
       this._checkEditMode();
   }
 
- private _checkEditMode(){
-   this.route.params.subscribe((params)=>{
-     if(params.id){
-       this.editmode = true;
-       this.currentCategoryId = params.id
-       this.categoriesService.getCategory(params.id).subscribe((category)=>{
-        this.categroyForm.name.setValue(category.name);
-        this.categroyForm.icon.setValue(category.icon);
-        this.categroyForm.color.setValue(category.color);
-       })
+  private _checkEditMode(){
+    this.route.params.pipe(
+      switchMap(params =>{
+        if(params.id){
+          this.editmode = true;
+          this.currentCategoryId = params.id
+          this.categoriesService.getCategory(params.id).subscribe((category) =>{
+            this.categroyForm.name.setValue(category.name);
+            this.categroyForm.icon.setValue(category.icon);
+            this.categroyForm.color.setValue(category.color);
+          })
 
-     }
-   });
+        }
+        return (this.currentCategoryId)
+      }),
+    ).subscribe()
+  }
 
- }
+
   onSubmit(){
     this.isSubmitted = true
     if(this.form.invalid){
