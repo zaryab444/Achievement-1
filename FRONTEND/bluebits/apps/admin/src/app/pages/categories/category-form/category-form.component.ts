@@ -1,22 +1,22 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriesService, Category } from '@bluebits/product';
 import { MessageService } from 'primeng/api';
-import { switchMap, timer } from 'rxjs';
+import { Subject, switchMap, takeUntil, timer } from 'rxjs';
 
 @Component({
   selector: 'admin-category-form',
   templateUrl: './category-form.component.html',
   styleUrls: ['./category-form.component.scss']
 })
-export class CategoryFormComponent implements OnInit {
+export class CategoryFormComponent implements OnInit, OnDestroy {
 
 
   form: FormGroup;
   isSubmitted = false;
-
+  endsubs$ : Subject<any> = new Subject();
   //we initialize false  because form by default not edit mode
   editmode = false;
   currentCategoryId : string;
@@ -39,9 +39,15 @@ export class CategoryFormComponent implements OnInit {
        //this method check the form is edit mode or not
       this._checkEditMode();
   }
+  ngOnDestroy() {
+    this.endsubs$.next;
+    this.endsubs$.complete();
+}
+
 
   private _checkEditMode(){
     this.route.params.pipe(
+      takeUntil(this.endsubs$),
       switchMap(params =>{
         if(params.id){
           this.editmode = true;
